@@ -20,13 +20,13 @@ function Weather() {
   function getLocation () {
     try {
       const token = localStorage.getItem("id_token")
+      console.log(token)
       const decodedToken = jwt_decode(token)
       const userID = decodedToken.data._id; /* In case we need to use */
       const userLocation = decodedToken.data.location;
-      // console.log(token)
       console.log("location: ", userLocation)
-      // console.log("decodedToken: ", decodedToken)
-      // console.log("ID: ", decodedToken.data._id)
+      console.log("userLocation: ", userLocation)
+      console.log("ID: ", decodedToken)
       // setUserLocation(location)
       cityName = userLocation
     } catch (err) {
