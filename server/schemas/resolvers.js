@@ -1,5 +1,6 @@
 const { AuthenticationError } = require('@apollo/server');
 const { User } = require('../models');
+const { Blogpost } = require('../models/');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -40,7 +41,75 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
-    }
+    },
+    addBlogpost: async (parent, { blogpostText }, context) => {
+      if (context.user) {
+        const blogpost = await Blogpost.create({
+          blogpostText,
+          blogpostAuthor: context.user.username,
+          blogpostLocation: context.user.location,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { blogposts: blogpost._id } }
+        );
+
+        return blogpost;
+      }
+      throw AuthenticationError;
+      ('You need to be logged in!');
+    },
+    addComment: async (parent, { blogpostId, commentText }, context) => {
+      if (context.user) {
+        return Blogpost.findOneAndUpdate(
+          { _id: blogpostId },
+          {
+            $addToSet: {
+              comments: { commentText, commentAuthor: context.user.username },
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      throw AuthenticationError;
+    },
+    removeBlogpost: async (parent, { blogpostId }, context) => {
+      if (context.user) {
+        const blogpost = await Blogpost.findOneAndDelete({
+          _id: blogpostId,
+          blogpostAuthor: context.user.username,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { blogposts: blogpost._id } }
+        );
+
+        return blogpost;
+      }
+      throw AuthenticationError;
+    },
+    removeComment: async (parent, { blogpostId, commentId }, context) => {
+      if (context.user) {
+        return Blogpost.findOneAndUpdate(
+          { _id: blogpostId },
+          {
+            $pull: {
+              comments: {
+                _id: commentId,
+                commentAuthor: context.user.username,
+              },
+            },
+          },
+          { new: true }
+        );
+      }
+      throw AuthenticationError;
+    },
   }
 };
 
