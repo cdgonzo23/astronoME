@@ -59,12 +59,7 @@ function Home() {
           </div>
         </card>
         <card className="bg-darkest col-span-3 p-8 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
-          <h4 className="text-2xl tracking-wide">Upcoming Events</h4>
-          <hr className="my-4"/>
-          <div className="list-none leading-7">
-            <li>upcoming event</li>
-            <li>info</li>
-          </div>
+          <Weather />
         </card>
         <card className="bg-darkest col-span-3 p-8 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
           <h4 className="text-2xl tracking-wide">Local Star Charts</h4>
@@ -76,7 +71,6 @@ function Home() {
           </div>
         </card>
       </div>
->>>>>>> 27237bde4680d572ea2da81a4441cfac5d601b2b
     </div>
   )
 }
