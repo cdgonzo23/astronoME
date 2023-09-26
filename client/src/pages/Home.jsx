@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { QUERY_USERS } from "../utils/queries";
-
+import Weather from '../components/Weather'
 // import UserList from "../components/UserList";
 
 function Home() {
@@ -46,6 +46,7 @@ function Home() {
         <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
         </div>
       </div>
+      <Weather />
     </div>
   )
 }
