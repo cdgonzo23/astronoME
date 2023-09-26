@@ -21,7 +21,7 @@ function Navbar() {
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-300 hover:bg-zinc-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
@@ -34,10 +34,10 @@ function Navbar() {
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                      <Link to="/" className='text-gray-300 bg-zinc-900 hover:bg-zinc-700 hover:text-white rounded-md px-3 py-2 text-lg font-md'>
+                      <Link to="/" className='text-gray-300 bg-zinc-800 hover:bg-zinc-600 hover:text-white rounded-md px-3 py-2 text-lg font-md'>
                         Home
                       </Link>
-                      <Link to="/" className='text-gray-300 bg-zinc-900 hover:bg-zinc-700 hover:text-white rounded-md px-3 py-2 text-lg font-md'>
+                      <Link to="/" className='text-gray-300 bg-zinc-800 hover:bg-zinc-600 hover:text-white rounded-md px-3 py-2 text-lg font-md'>
                         Community
                       </Link>
 
@@ -49,7 +49,7 @@ function Navbar() {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Menu.Button className="relative flex rounded-full bg-zinc-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
@@ -68,19 +68,19 @@ function Navbar() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                     >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-zinc-800 text-gray-300 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       {Auth.loggedIn() ? ( 
                       <>
                         <Menu.Item>
                           {({ active }) => (
-                            <Link to="/me" className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
+                            <Link to="/me" className={classNames(active ? 'bg-zinc-600' : '', 'block px-4 py-2 text-sm text-white')}>
                             {Auth.getProfile().data.username}&lsquo;s profile
                           </Link>
                           )}
                         </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
-                            <button onClick={logout} className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
+                            <button onClick={logout} className={classNames(active ? 'bg-zinc-600' : '', 'block px-4 py-2 text-sm text-white')}>
                             Logout
                           </button>
                           )}
@@ -90,14 +90,14 @@ function Navbar() {
                       <>
                       <Menu.Item>
                         {({ active }) => (
-                        <Link to="/login" className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
+                        <Link to="/login" className={classNames(active ? 'bg-zinc-600' : '', 'block px-4 py-2 text-sm text-white')}>
                           Login
                         </Link>
                         )}
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                        <Link to="/signup" className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
+                        <Link to="/signup" className={classNames(active ? 'bg-zinc-600' : '', 'block px-4 py-2 text-sm text-white')}>
                           Signup
                         </Link>
                         )}
@@ -115,10 +115,10 @@ function Navbar() {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
-              <Link to="/" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">
+              <Link to="/" className="text-gray-300 bg-zinc-800 hover:bg-zinc-600 hover:text-white block rounded-md px-3 py-2 text-base font-medium">
                 Home
               </Link>
-              <Link to="#" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">
+              <Link to="#" className="text-gray-300 bg-zinc-800 hover:bg-zinc-600 hover:text-white block rounded-md px-3 py-2 text-base font-medium">
                 Community
               </Link>
 
