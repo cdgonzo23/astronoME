@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { QUERY_USERS } from "../utils/queries";
-
+import Weather from '../components/Weather'
 // import UserList from "../components/UserList";
 
 function Home() {
@@ -49,14 +49,7 @@ function Home() {
 
       <div className="grid grid-cols-3 lg:grid-cols-9 gap-12 justify-evenly mx-12 lg:mx-32 my-24 lg:my-32 text-gray-300 font-normal">
         <card className="bg-darkest col-span-3 p-8 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
-          <h4 className="text-2xl tracking-wide ">Current Conditions</h4>
-          <hr className="my-4"/>
-          <div className="list-none leading-7">
-            <li>Good night for stargazing!</li>
-            <div>Moon chart here</div>
-            <li>65° F</li>
-            <li>Clear skies</li>
-          </div>
+          <Weather />
         </card>
         <card className="bg-darkest col-span-3 p-8 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
           <h4 className="text-2xl tracking-wide">Upcoming Events</h4>
