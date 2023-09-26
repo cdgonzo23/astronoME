@@ -16,5 +16,8 @@
   "devDependencies": {
     "autoprefixer": "^10.4.16",
     "concurrently": "^7.1.0"
+  },
+  "dependencies": {
+    "graphql-tag": "^2.12.6"
   }
 }
