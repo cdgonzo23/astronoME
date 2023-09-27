@@ -15,15 +15,14 @@ function Weather() {
   const [windSpeed, setWind] = useState("")
   const [humidity, setHumidity] = useState("")
   const [weatherDescription, setWeatherDesc] = useState("")
-  const [weatherIcon, setWeatherIcon] = useState("")
 
   function getLocation () {
     try {
       const token = localStorage.getItem("id_token")
-      // console.log(token)
       const decodedToken = jwt_decode(token)
-      const userID = decodedToken.data._id; /* In case we need to use */
+      // const userID = decodedToken.data._id; /* In case we need to use */
       const userLocation = decodedToken.data.location;
+      // console.log(token)
       // console.log("location: ", userLocation)
       // console.log("userLocation: ", userLocation)
       // console.log("ID: ", decodedToken)
@@ -62,7 +61,7 @@ function Weather() {
       });
     };
     fetchDatas();
-  }, [temperature, humidity, weatherDescription, weatherIcon, weatherURL, windSpeed]);
+  }, [temperature, humidity, weatherDescription, weatherURL, windSpeed]);
 
 
   return (
