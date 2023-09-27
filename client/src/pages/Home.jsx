@@ -1,9 +1,11 @@
 import { useQuery } from "@apollo/client";
+import Auth from '../utils/auth';
 import { QUERY_USERS } from "../utils/queries";
 import Weather from "../components/Weather";
 import { currentDate } from "../utils/currentDate";
 import { neoFeed, dailyImage } from "../utils/API";
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 // import UserList from "../components/UserList";
 
 function Home() {
@@ -87,9 +89,23 @@ function Home() {
       </div>
 
       <div className="grid grid-cols-4 md:grid-cols-12 gap-12 justify-evenly mx-12 lg:mx-32 my-24 lg:my-32 text-gray-300 font-normal">
-        <card className="bg-darkest col-span-4 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
-          <Weather />
-        </card>
+        {Auth.loggedIn() ? (
+          <card className="bg-darkest col-span-4 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
+            <Weather />
+          </card>
+        ) : (
+          <card className="bg-darkest col-span-12 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
+            <h4 className="text-3xl tracking-wide mb-2">Join the Community!</h4>
+            <hr className="my-4" />
+            <p className="text-xl tracking-wide">
+              <Link to="/login" className="text-[#6e91b8] text-2xl hover:text-hover-blue">Login </Link> 
+              or
+              <Link to="/signup" className="text-[#6e91b8] text-2xl hover:text-hover-blue"> Signup </Link>  
+              to gain access to all of AstronoME's best features while connecting with other star gazers around the nation! </p>
+            
+          </card>
+        )}
+
         <card className="bg-darkest col-span-4 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
           <h4 className="text-2xl tracking-wide">Incoming Asteroid</h4>
           <hr className="my-4" />
