@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode';
 // import { QUERY_USER } from '../utils/queries'
 import Auth from '../utils/auth';
 const apiKey = "79026700d6d1fb2b065b0cdee07661c3";
-let cityName = "";
+let cityName = "Atlanta";
 function Weather() {
   getLocation();
   // const [cityName, setCityName ] = useState("")
@@ -20,13 +20,13 @@ function Weather() {
   function getLocation () {
     try {
       const token = localStorage.getItem("id_token")
-      console.log(token)
+      // console.log(token)
       const decodedToken = jwt_decode(token)
       const userID = decodedToken.data._id; /* In case we need to use */
       const userLocation = decodedToken.data.location;
-      console.log("location: ", userLocation)
-      console.log("userLocation: ", userLocation)
-      console.log("ID: ", decodedToken)
+      // console.log("location: ", userLocation)
+      // console.log("userLocation: ", userLocation)
+      // console.log("ID: ", decodedToken)
       // setUserLocation(location)
       cityName = userLocation
     } catch (err) {
@@ -54,7 +54,7 @@ function Weather() {
     const fetchDatas = async () => {
       const result = await fetch(weatherURL);
       result.json().then((weatherData) => {
-        console.log("weatherData: ", weatherData);
+        // console.log("weatherData: ", weatherData);
         setTemp(weatherData.main.temp + "°F")
         setWind(weatherData.wind.speed + "mph")
         setHumidity(weatherData.main.humidity + "%")
