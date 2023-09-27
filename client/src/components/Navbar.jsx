@@ -73,14 +73,14 @@ function Navbar() {
                       <>
                         <Menu.Item>
                           {({ active }) => (
-                            <Link to="/me" className={classNames(active ? 'bg-hover-blue' : '', 'block px-4 py-2 text-sm text-white')}>
+                            <Link to="/me" className={classNames(active ? 'bg-hover-blue' : '', 'block px-4 py-2 text-sm text-gray-300 w-full text-left')}>
                             {Auth.getProfile().data.username}&lsquo;s profile
                           </Link>
                           )}
                         </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
-                            <button onClick={logout} className={classNames(active ? 'bg-hover-blue' : '', 'block px-4 py-2 text-sm text-white')}>
+                            <button onClick={logout} className={classNames(active ? 'bg-hover-blue' : '', 'block px-4 py-2 text-sm text-gray-300 w-full text-left')}>
                             Logout
                           </button>
                           )}
@@ -90,14 +90,14 @@ function Navbar() {
                       <>
                       <Menu.Item>
                         {({ active }) => (
-                        <Link to="/login" className={classNames(active ? 'bg-hover-blue' : '', 'block px-4 py-2 text-sm text-white')}>
+                        <Link to="/login" className={classNames(active ? 'bg-hover-blue' : '', 'block px-4 py-2 text-sm text-gray-300 w-full text-left')}>
                           Login
                         </Link>
                         )}
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                        <Link to="/signup" className={classNames(active ? 'bg-hover-blue' : '', 'block px-4 py-2 text-sm text-white')}>
+                        <Link to="/signup" className={classNames(active ? 'bg-hover-blue' : '', 'block px-4 py-2 text-sm text-gray-300 w-full text-left')}>
                           Signup
                         </Link>
                         )}

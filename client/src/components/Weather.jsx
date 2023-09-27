@@ -3,6 +3,8 @@ import jwt_decode from 'jwt-decode';
 // import { useQuery } from '@apollo/client';
 // import { QUERY_USER } from '../utils/queries'
 
+import MoonPhase from './Moon';
+
 const apiKey = "79026700d6d1fb2b065b0cdee07661c3";
 let cityName = "";
 function Weather() {
@@ -69,12 +71,14 @@ function Weather() {
     <>
       <h4 className="text-2xl tracking-wide ">Current Conditions</h4>
       <hr className="my-4" />
-      <div className="list-none leading-7">
-        <li>Good night for stargazing!</li>
-        <li>Temp: {temperature}</li>
-        <li>Humidity: {humidity}</li>
-        <li>Wind: {windSpeed}</li>
-        <li>{weatherDescription}</li>
+      <div className='flex flex-col sm:flex-row justify-between items-center'>
+        <div className="list-none leading-7">
+          <li><span className="text-[#6e91b8]">Temp:</span> {temperature}</li>
+          <li><span className="text-[#6e91b8]">Humidity:</span> {humidity}</li>
+          <li><span className="text-[#6e91b8]">Wind:</span> {windSpeed}</li>
+          <li><span className="text-[#6e91b8]">Conditions:</span> {weatherDescription}</li>
+        </div>
+        <MoonPhase/>
       </div>
     </>
   )
