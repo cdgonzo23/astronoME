@@ -69,11 +69,16 @@ function Home() {
         aria-hidden="true"
       ></div>
       <div className="mx-auto max-w-7xl px-6 lg:px-8 flex justify-center text-gray-300">
-        <div className="mx-auto max-w-2xl lg:mx-0 text-center">
+        <div className="mx-auto lg:mx-0 text-center">
           <h2 className="text-4xl font-semibold sm:text-6xl tracking-wider">
             Astrono<span className="text-[#6e91b8]">ME</span>
           </h2>
-          <p className="mt-6 text-lg leading-8 tracking-wider">The galaxy at your fingertips</p>
+          <p className="mt-6 text-lg leading-8 tracking-wider">
+            Introducing AstronoME, where stargazing meets community. Our web app is your one-stop celestial hub, delivering local weather insights,
+            moon phases, near-Earth events, real-time star charts, and captivating daily cosmic images. Explore the wonders of the universe alongside
+            a thriving community of fellow astronomers. With AstronoME, we&#39;re not just reaching for the stars; we&#39;re bringing the stars right
+            to your fingertips. Join us in unlocking the mysteries of the night sky. Reach for the stars with AstronoME!
+          </p>
         </div>
         <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none"></div>
       </div>
