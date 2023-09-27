@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { QUERY_USERS } from "../utils/queries";
 import Weather from "../components/Weather";
+import StarChart from "../components/StarChart";
 import { currentDate } from "../utils/currentDate";
 import { neoFeed, dailyImage } from "../utils/API";
 import { useEffect, useState } from "react";
@@ -102,13 +103,7 @@ function Home() {
           )}
         </card>
         <card className="bg-darkest col-span-3 p-8 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
-          <h4 className="text-2xl tracking-wide">Local Star Charts</h4>
-          <hr className="my-4" />
-          <div className="list-none leading-7">
-            <li>info about stars</li>
-            <div>star chart here</div>
-            <li>65° F</li>
-          </div>
+          <StarChart />
         </card>
         <card className="bg-darkest col-span-3 p-8 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
           <h4 className="text-2xl tracking-wide">Daily Image from NASA</h4>
