@@ -81,7 +81,7 @@ function Weather() {
           <li>{weatherDescription}</li>
           </>
         ): (
-          <li>Login to view forecast for stargazing!</li>
+          <li>Login to view your local weather conditions for stargazing!</li>
         )}
       </div>
     </>
