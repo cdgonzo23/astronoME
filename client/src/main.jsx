@@ -7,6 +7,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup.jsx';
+import Community from './pages/Community.jsx';
+import BlogpostForm from './pages/BlogpostForm.jsx';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
       {
         path: '/me',
         element: <Profile />
+      },
+      {
+        path: '/community',
+        element: <Community />
+      },
+      {
+        path: '/blogpostform',
+        element: <BlogpostForm />
       },
     ]
   }

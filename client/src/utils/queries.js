@@ -30,3 +30,33 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_BLOGPOSTS = gql`
+  query blogposts {
+    blogposts {
+      _id
+      blogpostText
+      blogpostAuthor
+      blogpostLocation
+      createdAt
+    }
+  }
+`
+
+export const QUERY_SINGLE_BLOGPOST = gql`
+  query blogpost($blogpostId: ID!) {
+    blogpost(blogpostId: $blogpostId) {
+      _id
+      blogpostText
+      blogpostAuthor
+      blogpostLocation
+      createdAt
+      comments {
+        _id
+        commentText
+        commentAuthor
+        createdAt
+      }
+    }
+  }
+`;
