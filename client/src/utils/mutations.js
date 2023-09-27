@@ -23,3 +23,37 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_BLOGPOST = gql`
+  mutation addBlogpost($blogpostText: String!) {
+    addBlogpost(blogpostText: $blogpostText) {
+      _id
+      blogpostText
+      blogpostAuthor
+      blogpostLocation
+      createdAt
+      comments {
+        _id
+        commentText
+      }
+    }
+  }
+`;
+
+export const ADD_COMMENT = gql`
+  mutation addComment($blogpostId: ID!, $commentText: String!) {
+    addComment(blogpostId: $blogpostId, commentText: $commentText) {
+      _id
+      blogpostText
+      blogpostAuthor
+      blogpostLocation
+      createdAt
+      comments {
+        _id
+        commentText
+        createdAt
+      }
+    }
+  }
+`;
+
