@@ -1,11 +1,11 @@
 import { useQuery } from "@apollo/client";
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 import { QUERY_USERS } from "../utils/queries";
 import Weather from "../components/Weather";
 import { currentDate } from "../utils/currentDate";
 import { neoFeed, dailyImage } from "../utils/API";
 import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 // import UserList from "../components/UserList";
 
 function Home() {
@@ -90,46 +90,55 @@ function Home() {
 
       <div className="grid grid-cols-4 md:grid-cols-12 gap-12 justify-evenly mx-12 lg:mx-32 my-24 lg:my-32 text-gray-300 font-normal">
         {Auth.loggedIn() ? (
-          <card className="bg-darkest col-span-4 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
+          <section className="bg-darkest col-span-4 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
             <Weather />
-          </card>
+          </section>
         ) : (
-          <card className="bg-darkest col-span-12 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
+          <section className="bg-darkest col-span-12 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
             <h4 className="text-3xl tracking-wide mb-2">Join the Community!</h4>
             <hr className="my-4" />
             <p className="text-xl tracking-wide">
-              <Link to="/login" className="text-[#6e91b8] text-2xl hover:text-hover-blue">Login </Link> 
+              <Link to="/login" className="text-[#6e91b8] text-2xl hover:text-hover-blue">
+                Login{" "}
+              </Link>
               or
-              <Link to="/signup" className="text-[#6e91b8] text-2xl hover:text-hover-blue"> Signup </Link>  
-              to gain access to all of AstronoME's best features while connecting with other star gazers around the nation! </p>
-            
-          </card>
+              <Link to="/signup" className="text-[#6e91b8] text-2xl hover:text-hover-blue">
+                {" "}
+                Signup{" "}
+              </Link>
+              to gain access to all of AstronoME's best features while connecting with other star gazers around the nation!{" "}
+            </p>
+          </section>
         )}
 
-        <card className="bg-darkest col-span-4 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
+        <section className="bg-darkest col-span-4 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
           <h4 className="text-2xl tracking-wide">Incoming Asteroid</h4>
           <hr className="my-4" />
           {neowsData ? (
             <div className="list-none leading-7">
-              <li><span className="text-[#6e91b8]">Asteroid Name:</span> {neowsData.name}</li>
-              <li><span className="text-[#6e91b8]">Estimated Diameter:</span> {Math.floor(neowsData.estimated_diameter.feet.estimated_diameter_max)} ft</li>
-              <li><span className="text-[#6e91b8]">Speed:</span> {Math.floor(neowsData.close_approach_data[0].relative_velocity.miles_per_hour)} mph</li>
-              <li><span className="text-[#6e91b8]">Potential Danger:</span> {neowsData.is_potentially_hazardous_asteroid ? "Yes" : "No"}</li>
+              <li>
+                <span className="text-[#6e91b8]">Asteroid Name:</span> {neowsData.name}
+              </li>
+              <li>
+                <span className="text-[#6e91b8]">Estimated Diameter:</span> {Math.floor(neowsData.estimated_diameter.feet.estimated_diameter_max)} ft
+              </li>
+              <li>
+                <span className="text-[#6e91b8]">Speed:</span> {Math.floor(neowsData.close_approach_data[0].relative_velocity.miles_per_hour)} mph
+              </li>
+              <li>
+                <span className="text-[#6e91b8]">Optimal View Time:</span> {neowsData.close_approach_data[0].close_approach_date_full.split(" ")[1]}{" "}
+                UTC
+              </li>
+
+              <li>
+                <span className="text-[#6e91b8]">Potential Danger:</span> {neowsData.is_potentially_hazardous_asteroid ? "Yes" : "No"}
+              </li>
             </div>
           ) : (
             <div className="list-none leading-7">No Asteroid Near Earth Today</div>
           )}
-        </card>
-        <card className="bg-darkest col-span-4 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
-          <h4 className="text-2xl tracking-wide">Local Star Charts</h4>
-          <hr className="my-4" />
-          <div className="list-none leading-7">
-            <li>info about stars</li>
-            <div>star chart here</div>
-            <li>65° F</li>
-          </div>
-        </card>
-        <card className="bg-darkest col-span-4 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
+        </section>
+        <section className="bg-darkest col-span-4 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
           <h4 className="text-2xl tracking-wide">Daily Image from NASA</h4>
           <hr className="my-4" />
           {dailyImgUrl ? (
@@ -139,7 +148,7 @@ function Home() {
           ) : (
             <p>No NASA Image of the Day</p>
           )}
-        </card>
+        </section>
       </div>
     </div>
   );
