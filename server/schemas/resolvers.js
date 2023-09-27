@@ -1,6 +1,5 @@
 const { AuthenticationError } = require('@apollo/server');
-const { User } = require('../models');
-const { Blogpost } = require('../models/');
+const { User, Blogpost } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -17,29 +16,31 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    blogposts: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Blogpost.find(params).sort({ createdAt: -1 });
+    },
+    blogpost: async (parent, { blogpostId }) => {
+      return Blogpost.findOne({ _id: blogpostId });
+    },
   },
-
   Mutation: {
-    addUser: async (_, args) => {
-      const user = await User.create(args);
+    addUser: async (parent, { username, email, location, password }) => {
+      const user = await User.create({ username, email, location, password });
       const token = signToken(user);
+
       return { token, user };
     },
     login: async (_, { email, password }) => {
       const user = await User.findOne({ email });
-
       if (!user) {
         throw new AuthenticationError('No user found with this email address');
       }
-
       const correctPw = await user.isCorrectPassword(password);
-
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');
       }
-
       const token = signToken(user);
-
       return { token, user };
     },
     addBlogpost: async (parent, { blogpostText }, context) => {
@@ -49,12 +50,10 @@ const resolvers = {
           blogpostAuthor: context.user.username,
           blogpostLocation: context.user.location,
         });
-
         await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { blogposts: blogpost._id } }
         );
-
         return blogpost;
       }
       throw AuthenticationError;
@@ -83,12 +82,10 @@ const resolvers = {
           _id: blogpostId,
           blogpostAuthor: context.user.username,
         });
-
         await User.findOneAndUpdate(
           { _id: context.user._id },
           { $pull: { blogposts: blogpost._id } }
         );
-
         return blogpost;
       }
       throw AuthenticationError;
@@ -112,5 +109,4 @@ const resolvers = {
     },
   }
 };
-
 module.exports = resolvers;
