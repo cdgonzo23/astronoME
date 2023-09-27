@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
 // import { useQuery } from '@apollo/client';
 // import { QUERY_USER } from '../utils/queries'
-
+import Auth from '../utils/auth';
 const apiKey = "79026700d6d1fb2b065b0cdee07661c3";
 let cityName = "";
 function Weather() {
@@ -54,7 +54,7 @@ function Weather() {
     const fetchDatas = async () => {
       const result = await fetch(weatherURL);
       result.json().then((weatherData) => {
-        // console.log("weatherData: ", weatherData);
+        console.log("weatherData: ", weatherData);
         setTemp(weatherData.main.temp + "°F")
         setWind(weatherData.wind.speed + "mph")
         setHumidity(weatherData.main.humidity + "%")
@@ -67,14 +67,22 @@ function Weather() {
 
   return (
     <>
+    {/* Add a condition to this. If weatherDescription === Clear, then display --- Conditions are good great for stargazing! */}
       <h4 className="text-2xl tracking-wide ">Current Conditions</h4>
       <hr className="my-4" />
       <div className="list-none leading-7">
-        <li>Good night for stargazing!</li>
-        <li>Temp: {temperature}</li>
-        <li>Humidity: {humidity}</li>
-        <li>Wind: {windSpeed}</li>
-        <li>{weatherDescription}</li>
+        {Auth.loggedIn() ?
+        (
+          <>
+          <li>Good night for stargazing!</li>
+          <li>Temp: {temperature}</li>
+          <li>Humidity: {humidity}</li>
+          <li>Wind: {windSpeed}</li>
+          <li>{weatherDescription}</li>
+          </>
+        ): (
+          <li>Login to view forecast for stargazing!</li>
+        )}
       </div>
     </>
   )
