@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
 // import { useQuery } from '@apollo/client';
 // import { QUERY_USER } from '../utils/queries'
-import Auth from '../utils/auth';
+
+import MoonPhase from './Moon';
+
 const apiKey = "79026700d6d1fb2b065b0cdee07661c3";
-let cityName = "Atlanta";
+let cityName = "";
 function Weather() {
   getLocation();
   // const [cityName, setCityName ] = useState("")
@@ -15,17 +17,18 @@ function Weather() {
   const [windSpeed, setWind] = useState("")
   const [humidity, setHumidity] = useState("")
   const [weatherDescription, setWeatherDesc] = useState("")
+  const [weatherIcon, setWeatherIcon] = useState("")
 
   function getLocation () {
     try {
       const token = localStorage.getItem("id_token")
+      console.log(token)
       const decodedToken = jwt_decode(token)
-      // const userID = decodedToken.data._id; /* In case we need to use */
+      const userID = decodedToken.data._id; /* In case we need to use */
       const userLocation = decodedToken.data.location;
-      // console.log(token)
-      // console.log("location: ", userLocation)
-      // console.log("userLocation: ", userLocation)
-      // console.log("ID: ", decodedToken)
+      console.log("location: ", userLocation)
+      console.log("userLocation: ", userLocation)
+      console.log("ID: ", decodedToken)
       // setUserLocation(location)
       cityName = userLocation
     } catch (err) {
@@ -61,27 +64,21 @@ function Weather() {
       });
     };
     fetchDatas();
-  }, [temperature, humidity, weatherDescription, weatherURL, windSpeed]);
+  }, [temperature, humidity, weatherDescription, weatherIcon, weatherURL, windSpeed]);
 
 
   return (
     <>
-    {/* Add a condition to this. If weatherDescription === Clear, then display --- Conditions are good great for stargazing! */}
       <h4 className="text-2xl tracking-wide ">Current Conditions</h4>
       <hr className="my-4" />
-      <div className="list-none leading-7">
-        {Auth.loggedIn() ?
-        (
-          <>
-          <li>Good night for stargazing!</li>
-          <li>Temp: {temperature}</li>
-          <li>Humidity: {humidity}</li>
-          <li>Wind: {windSpeed}</li>
-          <li>{weatherDescription}</li>
-          </>
-        ): (
-          <li>Login to view your local weather conditions for stargazing!</li>
-        )}
+      <div className='flex flex-col sm:flex-row justify-between items-center'>
+        <div className="list-none leading-7">
+          <li><span className="text-[#6e91b8]">Temp:</span> {temperature}</li>
+          <li><span className="text-[#6e91b8]">Humidity:</span> {humidity}</li>
+          <li><span className="text-[#6e91b8]">Wind:</span> {windSpeed}</li>
+          <li><span className="text-[#6e91b8]">Conditions:</span> {weatherDescription}</li>
+        </div>
+        <MoonPhase/>
       </div>
     </>
   )
