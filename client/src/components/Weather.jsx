@@ -4,6 +4,7 @@ import jwt_decode from 'jwt-decode';
 // import { QUERY_USER } from '../utils/queries'
 
 import MoonPhase from './Moon';
+import Auth from '../utils/auth';
 
 const apiKey = "79026700d6d1fb2b065b0cdee07661c3";
 let cityName = "";
@@ -73,10 +74,17 @@ function Weather() {
       <hr className="my-4" />
       <div className='flex flex-col sm:flex-row justify-between items-center'>
         <div className="list-none leading-7">
-          <li><span className="text-[#6e91b8]">Temp:</span> {temperature}</li>
-          <li><span className="text-[#6e91b8]">Humidity:</span> {humidity}</li>
-          <li><span className="text-[#6e91b8]">Wind:</span> {windSpeed}</li>
-          <li><span className="text-[#6e91b8]">Conditions:</span> {weatherDescription}</li>
+          {Auth.loggedIn() ?
+          (
+            <>
+            <li><span className="text-[#6e91b8]">Temp:</span> {temperature}</li>
+            <li><span className="text-[#6e91b8]">Humidity:</span> {humidity}</li>
+            <li><span className="text-[#6e91b8]">Wind:</span> {windSpeed}</li>
+            <li><span className="text-[#6e91b8]">Conditions:</span> {weatherDescription}</li>
+            </>
+          ) : (
+          <li>Login to view your local weather conditions for stargazing!</li>
+          )}
         </div>
         <MoonPhase/>
       </div>
