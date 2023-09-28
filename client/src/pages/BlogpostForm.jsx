@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import { useMutation } from "@apollo/client";
 import { ADD_BLOGPOST } from "../utils/mutations";
+// import { QUERY_BLOGPOSTS } from "../utils/queries";
 
 import Auth from "../utils/auth";
 
 const BlogpostForm = () => {
   const [blogpostText, setBlogpostText] = useState('')
 
-  const [addBlogpost, { error }] = useMutation(ADD_BLOGPOST);
+  const [addBlogpost, { error, data }] = useMutation(ADD_BLOGPOST);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -23,61 +24,48 @@ const BlogpostForm = () => {
         }
       });
 
-      setBlogpostText('')
+      setBlogpostText('');
     } catch (err) {
       console.error(err);
     }
   };
-
+  
   const handleChange = (event) => {
     const { name, value } = event.target;
-
+    
     if (name === 'blogpostText') {
-        setBlogpostText(value)
+      setBlogpostText(value)
     }
   };
-
+  
+  const renderForm = () => {
+    if (data) {
+      return <Navigate to='/community' replace />
+    } 
+      return (
+        <form className="flex flex-col" onSubmit={handleFormSubmit}>
+        <textarea
+          className='mb-8 bg-gray-300 pl-2 pr-2 py-1 rounded text-darkest'
+          name="blogpostText"
+          value={blogpostText}
+          style={{ height: '150px', resize: 'vertical' }}
+          onChange={handleChange}
+          ></textarea>
+        <button type="submit" className='px-4 py-2 bg-div-gray hover:bg-hover-blue rounded'>
+          Add Post
+        </button>
+      </form>
+    )
+  }
   return (
-    <div>
-      <h3>What do you see in the sky tonight?</h3>
-
-      {Auth.loggedIn() ? (
-        <>
-          <form
-            className="flex-row justify-center justify-space-between-md align-center"
-            onSubmit={handleFormSubmit}
-          >
-            <div className="col-12 col-lg-9">
-              <textarea
-                name="blogpostText"
-                value={blogpostText}
-                className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
-                onChange={handleChange}
-              ></textarea>
-            </div>
-
-            <div className="col-12 col-lg-3">
-              <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Post
-              </button>
-            </div>
-            {error && (
-              <div className="col-12 my-3 bg-danger text-white p-3">
-                {error.message}
-              </div>
-            )}
-          </form>
-        </>
-      ) : (
-        <p>
-          You need to be logged in to post. Please{' '}
-          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
-        </p>
-      )}
-    </div>
-  )
-
+    <main className='bg-darkest text-gray-300 flex flex-col items-center justify-center mt-32'>
+      <div>
+        <h4 className='mb-8 text-2xl'>What Do You See in the Stars Tonight?</h4>
+          {renderForm()}
+          {error && <div>{error.message}</div>}
+      </div>
+    </main>
+  );
 };
 
 export default BlogpostForm;

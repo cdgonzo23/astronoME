@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import Signup from './pages/Signup.jsx';
 import Community from './pages/Community.jsx';
 import BlogpostForm from './pages/BlogpostForm.jsx';
+import SingleBlogpost from './pages/SingleBlogpost.jsx';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: '/community',
         element: <Community />
+      },
+      {
+        path: '/community/:blogpostId',
+        element: <SingleBlogpost />
       },
       {
         path: '/blogpostform',
