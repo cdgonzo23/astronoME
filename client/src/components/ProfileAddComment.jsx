@@ -1,5 +1,14 @@
 
 const ProfileAddComments = () => {
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+    
+        try {
+            console.log("TESTINNGGGG")
+        } catch (err) {
+          console.error(err);
+        }
+      };
     return (
         <>
             <div className="flex items-start space-x-4">
@@ -7,7 +16,7 @@ const ProfileAddComments = () => {
                     <img className="inline-block h-10 w-10 rounded-full" src="https://placehold.jp/150x150.png" alt=""></img>
                 </div>
                 <div className="min-w-0 flex-1">
-                    <form action="#">
+                    <form onSubmit={handleFormSubmit}>
                         <div className="overflow-hidden rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
                             <label htmlFor="comment" className="sr-only">Post your stargazing adventure!</label>
                             <textarea rows="3" name="comment" id="comment" className="block w-full resize-none border-0 border-b border-transparent p-0 pb-2 text-gray-900 placeholder:text-gray-400 focus:border-indigo-600 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Add your comment..."></textarea>
