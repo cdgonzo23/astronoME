@@ -9,8 +9,6 @@ import UserList from "../components/UserList";
 
 const Profile = () => {
   const { id } = useParams();
-
-  // Get current user
   const { loading, data, error } = useQuery(id ? QUERY_USER : QUERY_ME, {
     variables: { id },
   });
@@ -27,7 +25,7 @@ const Profile = () => {
   if (Auth.loggedIn() && Auth.getProfile().data._id === id) {
     return <Navigate to="/me" replace />;
   }
-
+  // console.log("id: ", id)
   if (loading) {
     return <h4>Loading...</h4>;
   }
@@ -69,8 +67,17 @@ const Profile = () => {
               <img className="mx-auto h-20 w-20 rounded-full" src="https://placehold.jp/150x150.png" alt=""></img>
             </div>
             <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
-              <p className="text-sm font-medium text-gray-300">Welcome back,</p>
-              <p className="text-xl font-bold text-gray-300 sm:text-2xl">{user.username}</p>
+              {id ? (
+                <>
+                <p className="text-sm font-medium text-gray-300">Now viewing,</p>
+                <p className="text-xl font-bold text-gray-300 sm:text-2xl">{user.username}</p>
+                </>
+              ) : (
+                <>
+                <p className="text-sm font-medium text-gray-300">Welcome back,</p>
+                <p className="text-xl font-bold text-gray-300 sm:text-2xl">{user.username}</p>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -83,6 +90,7 @@ const Profile = () => {
         {renderCurrentUserInfo()}
       </div> */}
       {/* Add Input Form to post online. Just add photos like a media page */}
+      {/* Associate the person's blogpost (if posted) onto their profile page. To view THEIR posts */}
     </div>
   );
 };
