@@ -6,7 +6,7 @@ import Auth from "../utils/auth";
 import { QUERY_USERS, QUERY_USER, QUERY_ME } from "../utils/queries";
 // Components
 import UserList from "../components/UserList";
-
+import ProfileAddComments from "../components/ProfileAddComment";
 const Profile = () => {
   const { id } = useParams();
   const { loading, data, error } = useQuery(id ? QUERY_USER : QUERY_ME, {
@@ -67,6 +67,7 @@ const Profile = () => {
               <img className="mx-auto h-20 w-20 rounded-full" src="https://placehold.jp/150x150.png" alt=""></img>
             </div>
             <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
+              {/* If the id exists (DNE when on your own profile page) */}
               {id ? (
                 <>
                 <p className="text-sm font-medium text-gray-300">Now viewing,</p>
@@ -82,6 +83,17 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      {/* If viewing another profile, add comments is not displayed */}
+      {!id ? (
+        <>
+      <div className="m-7">
+        <ProfileAddComments />
+      </div>
+        </>
+      ) : (
+        <>
+        </>
+      )}
       <div className=" text-gray-300 font-normal">
         {renderUserList()}
       </div>
