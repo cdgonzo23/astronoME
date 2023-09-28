@@ -31,11 +31,10 @@ const UserList = ({ users, title }) => {
 
   return (
     <>
-      <h3>{title}</h3>
+      <h3 className='flex justify-center'>{title}</h3>
       <div className="grid grid-cols-3 lg:grid-cols-9 gap-12 justify-evenly mx-12 lg:mx-32 my-24 lg:my-32 text-gray-300 font-normal">
           {renderUsers()}
       </div>
-
     </>
   );
 };
