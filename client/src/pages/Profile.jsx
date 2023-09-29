@@ -1,16 +1,14 @@
 // Node Modules
-import { Navigate, useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { Navigate, useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
 // Utilities
-import Auth from '../utils/auth';
-import { QUERY_USERS, QUERY_USER, QUERY_ME } from '../utils/queries';
+import Auth from "../utils/auth";
+import { QUERY_USERS, QUERY_USER, QUERY_ME } from "../utils/queries";
 // Components
-import UserList from '../components/UserList';
-
+import UserList from "../components/UserList";
+import ProfileAddComments from "../components/ProfileAddComment";
 const Profile = () => {
   const { id } = useParams();
-
-  // Get current user
   const { loading, data, error } = useQuery(id ? QUERY_USER : QUERY_ME, {
     variables: { id },
   });
@@ -27,7 +25,7 @@ const Profile = () => {
   if (Auth.loggedIn() && Auth.getProfile().data._id === id) {
     return <Navigate to="/me" replace />;
   }
-
+  // console.log("id: ", id)
   if (loading) {
     return <h4>Loading...</h4>;
   }
@@ -44,30 +42,105 @@ const Profile = () => {
   const renderUserList = () => {
     if (usersLoading) return null;
     // Only renders users who's profile we're not currently viewing
-    const notMeUsers = users.filter(o => o._id !== user._id);
+    const notMeUsers = users.filter((o) => o._id !== user._id);
     return <UserList users={notMeUsers} title="User List" />;
   };
 
-  const renderCurrentUserInfo = () => {
-    if (id) return null;
-    return (
-      <ul>
-        <li>username: {user.username}</li>
-        <li>email: {user.email}</li>
-      </ul>
-    );
-  }
+  // Not useful as of now
+  // const renderCurrentUserInfo = () => {
+  //   if (id) return null;
+  //   return (
+  //     <ul>
+  //       <li>username: {user.username}</li>
+  //       <li>email: {user.email}</li>
+  //     </ul>
+  //   );
+  // };
 
   return (
-    <div>
-      <div>
-        <h2>
-          Viewing {id ? `${user.username}'s` : 'your'} profile.
-        </h2>
-        {renderCurrentUserInfo()}
-        {renderUserList()}
-      </div>
-    </div>
+    <>
+      <div className="m-7">
+        <h2 className="text-gray-300 flex justify-center">Viewing {id ? `${user.username}'s` : "your"} profile.</h2>
+        <div className=" flex justify-center bg-darkest p-6 rounded m-7 shadow-[5px_2px_53px_5px_#6e91b8b6] ">
+          <div className="sm:flex sm:items-center sm:justify-between">
+            <div className="sm:flex sm:space-x-5">
+              <div className="flex-shrink-0">
+                <img className="mx-auto h-20 w-20 rounded-full" src="https://placehold.jp/150x150.png" alt=""></img>
+              </div>
+              <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
+                {id ? (
+                  <>
+                    <p className="text-sm font-medium text-gray-300">Now viewing,</p>
+                    <p className="text-xl font-bold text-gray-300 sm:text-2xl">{user.username}</p>
+                  </>
+                ) : (
+                  <>
+                    <p className="text-sm font-medium text-gray-300">Welcome back,</p>
+                    <p className="text-xl font-bold text-gray-300 sm:text-2xl">{user.username}</p>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="m-8">
+          <div className="m-7px-4 sm:px-0">
+            <h3 className="text-base font-semibold leading-7 text-white">User Information</h3>
+            <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-400">Personal details and application.</p>
+          </div>
+          <div className="mt-6 border-t border-white/10">
+            <dl className="divide-y divide-white/10">
+              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                <dt className="text-sm font-medium leading-6 text-white">Location</dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-400 sm:col-span-2 sm:mt-0">{user.location}</dd>
+              </div>
+              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                <dt className="text-sm font-medium leading-6 text-white">Email address</dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-400 sm:col-span-2 sm:mt-0">{user.email}</dd>
+              </div>
+            </dl>
+          </div>
+
+        </div>
+      </div >
+
+    </>
+    // <div>
+    //   <h2 className="text-gray-300 flex justify-center">Viewing {id ? `${user.username}'s` : "your"} profile.</h2>
+    //   <div className=" flex justify-center bg-darkest p-6 rounded m-7 shadow-[5px_2px_53px_5px_#6e91b8b6] ">
+    //     <div className="sm:flex sm:items-center sm:justify-between">
+    //       <div className="sm:flex sm:space-x-5">
+    //         <div className="flex-shrink-0">
+    //           <img className="mx-auto h-20 w-20 rounded-full" src="https://placehold.jp/150x150.png" alt=""></img>
+    //         </div>
+    //         <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
+    //           {/* If the id exists (DNE when on your own profile page) */}
+    //           {id ? (
+    //             <>
+    //             <p className="text-sm font-medium text-gray-300">Now viewing,</p>
+    //             <p className="text-xl font-bold text-gray-300 sm:text-2xl">{user.username}</p>
+    //             </>
+    //           ) : (
+    //             <>
+    //             <p className="text-sm font-medium text-gray-300">Welcome back,</p>
+    //             <p className="text-xl font-bold text-gray-300 sm:text-2xl">{user.username}</p>
+    //             </>
+    //           )}
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    //   {/* If viewing another profile, add comments is not displayed */}
+    //   <div className=" text-gray-300 font-normal">
+    //     {renderUserList()}
+    //   </div>
+    //   {/* Display your info on the side 
+    //   <div>
+    //     {renderCurrentUserInfo()}
+    //   </div> */}
+    //   {/* Add Input Form to post online. Just add photos like a media page */}
+    //   {/* Associate the person's blogpost (if posted) onto their profile page. To view THEIR posts */}
+    // </div>
   );
 };
 
