@@ -3,18 +3,22 @@ import { Navigate } from "react-router-dom";
 
 import { useMutation } from "@apollo/client";
 import { ADD_BLOGPOST } from "../utils/mutations";
-// import { QUERY_BLOGPOSTS } from "../utils/queries";
+import { QUERY_BLOGPOSTS } from "../utils/queries";
 
 import Auth from "../utils/auth";
 
 const BlogpostForm = () => {
   const [blogpostText, setBlogpostText] = useState('')
 
-  const [addBlogpost, { error, data }] = useMutation(ADD_BLOGPOST);
+  const [addBlogpost, { error }] = useMutation(ADD_BLOGPOST, {
+    refetchQueries: [
+      QUERY_BLOGPOSTS,
+        'blogposts'
+    ]
+  });
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
     try {
       await addBlogpost({
         variables: {
@@ -23,7 +27,7 @@ const BlogpostForm = () => {
             blogpostLocation: Auth.getProfile().data.location,
         }
       });
-
+      document.location.replace('/community');
       setBlogpostText('');
     } catch (err) {
       console.error(err);
@@ -39,9 +43,9 @@ const BlogpostForm = () => {
   };
   
   const renderForm = () => {
-    if (data) {
-      return <Navigate to='/community' replace />
-    } 
+    // if (data) {
+    //   return <Navigate to='/community' replace />
+    // } 
       return (
         <form className="" onSubmit={handleFormSubmit}>
         <textarea
