@@ -1,6 +1,6 @@
-import { useQuery } from "@apollo/client";
+// import { useQuery } from "@apollo/client";
 import Auth from "../utils/auth";
-import { QUERY_USERS } from "../utils/queries";
+// import { QUERY_USERS } from "../utils/queries";
 import Weather from "../components/Weather";
 import { currentDate } from "../utils/currentDate";
 import { neoFeed, dailyImage } from "../utils/API";
@@ -9,9 +9,9 @@ import { Link } from "react-router-dom";
 // import UserList from "../components/UserList";
 
 function Home() {
-  const { data, loading, error } = useQuery(QUERY_USERS);
+  // const { data, loading, error } = useQuery(QUERY_USERS);
 
-  const users = data?.users || [];
+  // const users = data?.users || [];
 
   const [neowsData, setNeowsData] = useState(null);
   const [dailyImgUrl, setDailyImgUrl] = useState(null);

@@ -22,7 +22,13 @@ const userSchema = new Schema({
   location: {
     type: String,
     required: true,
-  }
+  },
+  blogposts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Blogpost',
+    },
+  ],
 });
 
 userSchema.pre('save', async function (next) {
