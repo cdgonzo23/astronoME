@@ -80,13 +80,13 @@ function Home() {
         <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none"></div>
       </div>
 
-      <div className="grid grid-cols-4 md:grid-cols-12 gap-12 justify-evenly mx-12 lg:mx-32 my-24 lg:my-32 text-gray-300 font-normal">
+      <div className="grid grid-cols-4 lg:grid-cols-12 gap-12 justify-evenly mx-12 lg:mx-32 my-24 lg:my-32 text-gray-300 font-normal">
         {Auth.loggedIn() ? (
-          <section className="bg-darkest col-span-4 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
+          <section className="bg-darkest col-span-4 md:col-span-2 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
             <Weather />
           </section>
         ) : (
-          <section className="bg-darkest col-span-4 md:col-span-12 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
+          <section className="bg-darkest col-span-4 lg:col-span-12 md:col-span-2 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
             <h4 className="text-3xl tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue">Join the Community!</h4>
             <p className="text-xl tracking-wide">
               <p className="hidden lg:block mt-6 text-xl leading-8 tracking-wider">
@@ -107,7 +107,7 @@ function Home() {
           </section>
         )}
 
-        <section className="bg-darkest col-span-4 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
+        <section className="bg-darkest col-span-4 p-12 md:col-span-2 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
           <h4 className="text-2xl tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue">Incoming Asteroid</h4>
           {neowsData ? (
             <div className="list-none leading-7">
@@ -133,7 +133,7 @@ function Home() {
             <div className="list-none leading-7">No Asteroid Near Earth Today</div>
           )}
         </section>
-        <section className="bg-darkest col-span-4 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
+        <section className="bg-darkest col-span-4 md:col-span-2 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
           <h4 className="text-2xl tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue">Daily Image from NASA</h4>
           {dailyImgUrl ? (
             <div>
