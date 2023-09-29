@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CloudinaryUploadWidget from "../components/UploadWidget";
 // import { Navigate } from "react-router-dom";
 
 import { useMutation } from "@apollo/client";
@@ -8,13 +9,11 @@ import { QUERY_BLOGPOSTS } from "../utils/queries";
 import Auth from "../utils/auth";
 
 const BlogpostForm = () => {
-  const [blogpostText, setBlogpostText] = useState('')
+  const [blogpostText, setBlogpostText] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   const [addBlogpost, { error }] = useMutation(ADD_BLOGPOST, {
-    refetchQueries: [
-      QUERY_BLOGPOSTS,
-        'blogposts'
-    ]
+    refetchQueries: [QUERY_BLOGPOSTS, "blogposts"],
   });
 
   const handleFormSubmit = async (event) => {
@@ -22,55 +21,55 @@ const BlogpostForm = () => {
     try {
       await addBlogpost({
         variables: {
-            blogpostText,
-            blogpostAuthor: Auth.getProfile().data.username,
-            blogpostLocation: Auth.getProfile().data.location,
-        }
+          blogpostText,
+          blogpostAuthor: Auth.getProfile().data.username,
+          blogpostLocation: Auth.getProfile().data.location,
+          imageUrl: imageUrl,
+        },
       });
-      document.location.replace('/community');
-      setBlogpostText('');
+      document.location.replace("/community");
+      setBlogpostText("");
     } catch (err) {
       console.error(err);
     }
   };
-  
+
   const handleChange = (event) => {
     const { name, value } = event.target;
-    
-    if (name === 'blogpostText') {
-      setBlogpostText(value)
+
+    if (name === "blogpostText") {
+      setBlogpostText(value);
     }
   };
-  
+
   const renderForm = () => {
     // if (data) {
     //   return <Navigate to='/community' replace />
-    // } 
-      return (
-        <form className="" onSubmit={handleFormSubmit}>
+    // }
+    return (
+      <form className="" onSubmit={handleFormSubmit}>
         <textarea
-          className='mb-4 bg-gray-300 pl-2 pr-2 py-1 rounded text-darkest w-full'
+          className="mb-4 bg-gray-300 pl-2 pr-2 py-1 rounded text-darkest w-full"
           name="blogpostText"
           value={blogpostText}
-          style={{ height: '150px', resize: 'vertical' }}
+          style={{ height: "150px", resize: "vertical" }}
           onChange={handleChange}
         ></textarea>
+        <CloudinaryUploadWidget setImg={setImageUrl} />
         <div className="flex justify-end w-full">
-          <button type="submit" className='px-4 py-2 bg-div-gray hover:bg-hover-blue rounded'>
-          Add Post
+          <button type="submit" className="px-4 py-2 bg-div-gray hover:bg-hover-blue rounded">
+            Add Post
           </button>
         </div>
-          
-        
       </form>
-    )
-  }
+    );
+  };
   return (
-    <main className='bg-darkest text-gray-300 flex flex-col items-center justify-center mt-32'>
+    <main className="bg-darkest text-gray-300 flex flex-col items-center justify-center mt-32">
       <div className="flex flex-col w-full mx-8 mb-2 md:w-[60%]">
-        <h4 className='mb-8 text-2xl'>What Do You See in the Stars Tonight?</h4>
-          {renderForm()}
-          {error && <div>{error.message}</div>}
+        <h4 className="mb-8 text-2xl">What Do You See in the Stars Tonight?</h4>
+        {renderForm()}
+        {error && <div>{error.message}</div>}
       </div>
     </main>
   );

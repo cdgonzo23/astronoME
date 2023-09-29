@@ -1,26 +1,22 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import { REMOVE_BLOGPOST } from '../utils/mutations'
+import { REMOVE_BLOGPOST } from "../utils/mutations";
 import { QUERY_BLOGPOSTS } from "../utils/queries";
 
-
 const BlogpostList = ({ blogposts }) => {
-  const [ removeBlogpost ] = useMutation(REMOVE_BLOGPOST, {
-    refetchQueries: [
-      QUERY_BLOGPOSTS,
-        'blogposts'
-    ]
-  })
+  const [removeBlogpost] = useMutation(REMOVE_BLOGPOST, {
+    refetchQueries: [QUERY_BLOGPOSTS, "blogposts"],
+  });
 
-  async function handlePostDelete (blogpostId) {
+  async function handlePostDelete(blogpostId) {
     // e.preventDefault();
     try {
       await removeBlogpost({
         variables: {
-          blogpostId: blogpostId
-        }
-      })
+          blogpostId: blogpostId,
+        },
+      });
       document.location.reload();
     } catch (err) {
       console.error(err);
@@ -44,36 +40,40 @@ const BlogpostList = ({ blogposts }) => {
             <div className="leading-7 text-gray-300 text-2xl">
               <p>{blogpost.blogpostText}</p>
             </div>
+            <div>
+              <img src={blogpost.imageUrl} alt="stars image" />
+            </div>
             <div className="mt-4 w-full flex flex-row justify-between text-center text-gray-300">
               <Link to={`/community/${blogpost._id}`}>
-                {(blogposts[index].comments.length === 1) ? (
+                {blogposts[index].comments.length === 1 ? (
                   <p className="hover:text-hover-blue text-gray-500 text-lg">{blogposts[index].comments.length} comment</p>
                 ) : (
                   <p className="hover:text-hover-blue text-gray-500 text-lg">{blogposts[index].comments.length} comments</p>
                 )}
-                
               </Link>
-              {(document.location.pathname === '/me') ? (
+              {document.location.pathname === "/me" ? (
                 <div>
-                <Link
-                  className="text-gray-300 m-2 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-4 py-2 text-sm font-md"
-                  to={`/community/${blogpost._id}`}
+                  <Link
+                    className="text-gray-300 m-2 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-4 py-2 text-sm font-md"
+                    to={`/community/${blogpost._id}`}
                   >
-                  View Post
-                </Link>
-                <button
-                onClick={() => handlePostDelete(blogpost._id)}
-                className="text-gray-300 bg-galaxy-red hover:bg-[#692217] hover:text-white rounded-md px-4 py-2 text-sm font-md">Delete Post</button>
+                    View Post
+                  </Link>
+                  <button
+                    onClick={() => handlePostDelete(blogpost._id)}
+                    className="text-gray-300 bg-galaxy-red hover:bg-[#692217] hover:text-white rounded-md px-4 py-2 text-sm font-md"
+                  >
+                    Delete Post
+                  </button>
                 </div>
               ) : (
                 <Link
-                className="text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-4 py-2 text-sm font-md"
-                to={`/community/${blogpost._id}`}
+                  className="text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-4 py-2 text-sm font-md"
+                  to={`/community/${blogpost._id}`}
                 >
-                View Post
-              </Link>
+                  View Post
+                </Link>
               )}
-
             </div>
           </div>
         ))}

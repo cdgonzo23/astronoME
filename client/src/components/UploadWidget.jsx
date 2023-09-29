@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 
 const CloudinaryUploadWidget = ({ setImg }) => {
   useEffect(() => {
-    const cloudName = "djvsww0dv"; // replace with your own cloud name
-    const uploadPreset = "w6bzpfa4"; // replace with your own upload preset
+    const cloudName = "djvsww0dv";
+    const uploadPreset = "w6bzpfa4";
 
     const myWidget = window.cloudinary.createUploadWidget(
       {
@@ -36,7 +36,7 @@ const CloudinaryUploadWidget = ({ setImg }) => {
 
   return (
     <button type="button" id="upload_widget" className="cloudinary-button">
-      Upload
+      Add Your Image
     </button>
   );
 };
