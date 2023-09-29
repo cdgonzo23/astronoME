@@ -8,7 +8,7 @@ const BlogpostList = ({ blogposts }) => {
   const [removeBlogpost] = useMutation(REMOVE_BLOGPOST, {
     refetchQueries: [QUERY_BLOGPOSTS, "blogposts"],
   });
-
+  console.log("blogposts", blogposts);
   async function handlePostDelete(blogpostId) {
     // e.preventDefault();
     try {
@@ -41,9 +41,9 @@ const BlogpostList = ({ blogposts }) => {
               <p>{blogpost.blogpostText}</p>
             </div>
             <div>
-              <img src={blogpost.imageUrl} alt="stars image" />
+              <img className="w-96 mt-6" src={blogpost.imageUrl} alt="stars image" />
             </div>
-            <div className="mt-4 w-full flex flex-row justify-between text-center text-gray-300">
+            <div className="mt-6 w-full flex flex-row justify-between text-center text-gray-300">
               <Link to={`/community/${blogpost._id}`}>
                 {blogposts[index].comments.length === 1 ? (
                   <p className="hover:text-hover-blue text-gray-500 text-lg">{blogposts[index].comments.length} comment</p>

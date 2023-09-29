@@ -1,10 +1,10 @@
-const { Schema, model } = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
+const { Schema, model } = require("mongoose");
+const dateFormat = require("../utils/dateFormat");
 
 const blogpostSchema = new Schema({
   blogpostText: {
     type: String,
-    required: 'You need to leave a description!',
+    required: "You need to leave a description!",
     minlength: 1,
     maxlength: 280,
     trim: true,
@@ -17,6 +17,11 @@ const blogpostSchema = new Schema({
   blogpostLocation: {
     type: String,
     required: true,
+    trim: true,
+  },
+  imageUrl: {
+    type: String,
+    required: false,
     trim: true,
   },
   createdAt: {
@@ -45,6 +50,6 @@ const blogpostSchema = new Schema({
   ],
 });
 
-const Blogpost = model('Blogpost', blogpostSchema);
+const Blogpost = model("Blogpost", blogpostSchema);
 
 module.exports = Blogpost;

@@ -55,8 +55,8 @@ const BlogpostForm = () => {
           style={{ height: "150px", resize: "vertical" }}
           onChange={handleChange}
         ></textarea>
-        <CloudinaryUploadWidget setImg={setImageUrl} />
-        <div className="flex justify-end w-full">
+        <div className="flex justify-between w-full">
+          <CloudinaryUploadWidget setImg={setImageUrl} />
           <button type="submit" className="px-4 py-2 bg-div-gray hover:bg-hover-blue rounded">
             Add Post
           </button>
