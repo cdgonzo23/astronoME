@@ -72,16 +72,17 @@ function Weather() {
 
   return (
     <>
-      <h4 className="text-2xl tracking-wide ">Current Conditions</h4>
-      <hr className="my-4" />
-      <div className='flex flex-col sm:flex-row justify-between items-center'>
+      <h4 className="text-2xl tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue">Current Conditions</h4>
+      <div className='flex flex-col sm:flex-row justify-between'>
         <div className="list-none leading-7">
           <li><span className="text-[#6e91b8]">Temp:</span> {temperature}</li>
           <li><span className="text-[#6e91b8]">Humidity:</span> {humidity}</li>
           <li><span className="text-[#6e91b8]">Wind:</span> {windSpeed}</li>
           <li><span className="text-[#6e91b8]">Conditions:</span> {weatherDescription}</li>
         </div>
-        <MoonPhase/>
+        <div className='w-full flex flex-col items-center'>
+          <MoonPhase/>
+        </div>
       </div>
     </>
   )

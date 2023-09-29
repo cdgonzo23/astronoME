@@ -86,16 +86,15 @@ function Home() {
             <Weather />
           </section>
         ) : (
-          <section className="bg-darkest col-span-12 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
-            <h4 className="text-3xl tracking-wide mb-2">Join the Community!</h4>
-            <hr className="my-4" />
+          <section className="bg-darkest col-span-4 md:col-span-12 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
+            <h4 className="text-3xl tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue">Join the Community!</h4>
             <p className="text-xl tracking-wide">
               <p className="hidden lg:block mt-6 text-xl leading-8 tracking-wider">
                 Introducing AstronoME, where stargazing meets community. Our web app is your one-stop celestial hub, delivering local weather insights,
                 moon phases, near-Earth events, and more. Explore the wonders of the universe alongside a thriving community of fellow astronomers. With
                 AstronoME, we&#39;re not just reaching for the stars; we&#39;re bringing the stars right to your fingertips.
               </p>
-              <Link to="/login" className="text-[#6e91b8] text-xl hover:text-hover-blue">
+              <Link to="/login" className="text-[#6e91b8] text-2xl hover:text-hover-blue">
                 Login{" "}
               </Link>
               or
@@ -109,8 +108,7 @@ function Home() {
         )}
 
         <section className="bg-darkest col-span-4 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
-          <h4 className="text-2xl tracking-wide">Incoming Asteroid</h4>
-          <hr className="my-4" />
+          <h4 className="text-2xl tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue">Incoming Asteroid</h4>
           {neowsData ? (
             <div className="list-none leading-7">
               <li>
@@ -136,8 +134,7 @@ function Home() {
           )}
         </section>
         <section className="bg-darkest col-span-4 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
-          <h4 className="text-2xl tracking-wide">Daily Image from NASA</h4>
-          <hr className="my-4" />
+          <h4 className="text-2xl tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue">Daily Image from NASA</h4>
           {dailyImgUrl ? (
             <div>
               <img style={{ width: "300px" }} src={dailyImgUrl.url} alt="Nasa Picture of the day" />
