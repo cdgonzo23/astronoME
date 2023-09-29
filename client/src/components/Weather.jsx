@@ -22,13 +22,13 @@ function Weather() {
   function getLocation () {
     try {
       const token = localStorage.getItem("id_token")
-      console.log(token)
+      // console.log(token)
       const decodedToken = jwt_decode(token)
       const userID = decodedToken.data._id; /* In case we need to use */
       const userLocation = decodedToken.data.location;
-      console.log("location: ", userLocation)
-      console.log("userLocation: ", userLocation)
-      console.log("ID: ", decodedToken)
+      // console.log("location: ", userLocation)
+      // console.log("userLocation: ", userLocation)
+      // console.log("ID: ", decodedToken)
       // setUserLocation(location)
       cityName = userLocation
     } catch (err) {
@@ -54,6 +54,9 @@ function Weather() {
   let weatherURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey + '&units=imperial';
   useEffect(() => {
     const fetchDatas = async () => {
+      if (!lat || !lon) {
+        return;
+      }
       const result = await fetch(weatherURL);
       result.json().then((weatherData) => {
         // console.log("weatherData: ", weatherData);
@@ -64,7 +67,7 @@ function Weather() {
       });
     };
     fetchDatas();
-  }, [temperature, humidity, weatherDescription, weatherIcon, weatherURL, windSpeed]);
+  }, [temperature, humidity, weatherDescription, weatherIcon, weatherURL, windSpeed, lat, lon]);
 
 
   return (
