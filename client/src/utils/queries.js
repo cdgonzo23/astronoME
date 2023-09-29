@@ -12,6 +12,7 @@ export const QUERY_USER = gql`
         blogpostText
         blogpostAuthor
         blogpostLocation
+        imageUrl
         createdAt
         comments {
           _id
@@ -33,6 +34,7 @@ export const QUERY_ME = gql`
         blogpostText
         blogpostAuthor
         blogpostLocation
+        imageUrl
         createdAt
         comments {
           _id
@@ -49,6 +51,7 @@ export const QUERY_BLOGPOSTS = gql`
       blogpostText
       blogpostAuthor
       blogpostLocation
+      imageUrl
       createdAt
       comments {
         _id
@@ -64,6 +67,7 @@ export const QUERY_SINGLE_BLOGPOST = gql`
       blogpostText
       blogpostAuthor
       blogpostLocation
+      imageUrl
       createdAt
       comments {
         _id

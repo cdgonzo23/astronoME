@@ -1,4 +1,4 @@
-const gql = require('graphql-tag');
+const gql = require("graphql-tag");
 
 const typeDefs = gql`
   type User {
@@ -15,6 +15,7 @@ const typeDefs = gql`
     blogpostText: String
     blogpostAuthor: String
     blogpostLocation: String
+    imageUrl: String
     createdAt: String
     comments: [Comment]!
   }
@@ -39,9 +40,9 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(email: String!, username: String!, location: String! password: String!): Auth
+    addUser(email: String!, username: String!, location: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addBlogpost(blogpostText: String!): Blogpost
+    addBlogpost(blogpostText: String!, imageUrl: String): Blogpost
     addComment(blogpostId: ID!, commentText: String!): Blogpost
     removeBlogpost(blogpostId: ID!): Blogpost
     removeComment(blogpostId: ID!, commentId: ID!): Blogpost
