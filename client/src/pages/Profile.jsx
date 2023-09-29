@@ -8,20 +8,23 @@ import BlogpostList from "../components/BlogpostList";
 // Components
 
 const Profile = () => {
-  const { id } = useParams();
-  const { loading, data, error } = useQuery(id ? QUERY_USER : QUERY_ME, {
-    variables: { id },
-  });
+  const { username } = useParams();
+  const { loading, data, error } = useQuery(
+    username ? QUERY_USER : QUERY_ME, 
+    {
+      variables: { username: username },
+    });
 
-  const user = data?.me || data?.user || {};
+  const user = data?.user || data?.me || {};
 
   if (error) console.log(error);
 
+  console.log(username)
   // redirect to personal profile page if username is yours
-  if (Auth.loggedIn() && Auth.getProfile().data._id === id) {
-    return <Navigate to="/me" replace />;
+  if (Auth.loggedIn() && Auth.getProfile().data.username === username) {
+    return <Navigate to="/me" />;
   }
-  console.log("user: ", user);
+  // console.log("user: ", user);
   if (loading) {
     return <h4>Loading...</h4>;
   }
@@ -35,6 +38,8 @@ const Profile = () => {
     );
   }
 
+  // console.log(user.username)
+
   return (
     <>
       <div className="m-7">
@@ -45,7 +50,7 @@ const Profile = () => {
                 <img className="mx-auto h-20 w-20 rounded-full" src="https://placehold.jp/150x150.png" alt=""></img>
               </div>
               <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
-                {id ? (
+                {username ? (
                   <>
                     <p className="text-sm font-medium text-gray-300">Now viewing,</p>
                     <p className="text-xl font-bold text-gray-300 sm:text-2xl">{user.username}</p>

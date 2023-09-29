@@ -11,7 +11,7 @@ const BlogpostList = ({ blogposts }) => {
         blogposts.map((blogpost) => (
           <div key={blogpost._id} className="mb-8 px-4 sm:px-8 pt-8 pb-4 rounded shadow-[5px_2px_53px_5px_#6e91b8b6]">
             <div className="card-header tracking-wide flex flex-col pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue">
-              <Link to={`/users/${blogpost.blogpostAuthor}`} className="hover:text-hover-blue text-lg">
+              <Link to={`/user/${blogpost.blogpostAuthor}`} className="hover:text-hover-blue text-lg">
                 {blogpost.blogpostAuthor}
               </Link>
               <span className="text-sm text-gray-500 italic">
@@ -27,7 +27,7 @@ const BlogpostList = ({ blogposts }) => {
             <div className="mt-4 w-full flex flex-row justify-end text-gray-300">
               <Link 
                 className='text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-4 py-2 text-sm font-md'
-                to={`${blogpost._id}`}
+                to={`/community/${blogpost._id}`}
               >
                 View Post
               </Link>

@@ -5,8 +5,8 @@ const { countDocuments } = require('../models/User');
 
 const resolvers = {
   Query: {
-    user: async (_, args) => {
-      return User.findOne({ _id: args.id }).populate('blogposts');
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate('blogposts');
     },
     me: async (_, args, context) => {
       if (context.user) {
