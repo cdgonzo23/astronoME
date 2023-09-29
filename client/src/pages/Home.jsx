@@ -50,14 +50,6 @@ function Home() {
     fetchNeowsData();
   }, []);
 
-  if (error) {
-    throw Error(error);
-  }
-
-  if (loading) {
-    return <h2 className="text-gray-300 text-center">Loading…</h2>;
-  }
-
   return (
     <div className="relative isolate overflow-y-auto py-24 sm:py-32 min-h-screen">
       <img
@@ -75,7 +67,7 @@ function Home() {
           <h2 className="text-4xl font-semibold sm:text-6xl tracking-wider">
             Astrono<span className="text-[#6e91b8]">ME</span>
           </h2>
-          <p className="hidden lg:block mt-6 text-lg leading-8 tracking-wider">
+          {/* <p className="hidden lg:block mt-6 text-lg leading-8 tracking-wider">
             Introducing AstronoME, where stargazing meets community. Our web app is your one-stop celestial hub, delivering local weather insights,
             moon phases, near-Earth events, and more. Explore the wonders of the universe alongside a thriving community of fellow astronomers. With
             AstronoME, we&#39;re not just reaching for the stars; we&#39;re bringing the stars right to your fingertips.
@@ -83,7 +75,7 @@ function Home() {
           <p className="lg:hidden mt-6 text-lg leading-8 tracking-wider">
             Introducing AstronoME, where stargazing meets community. With AstronoME, we&#39;re not just reaching for the stars; we&#39;re bringing the
             stars right to your fingertips.
-          </p>
+          </p> */}
         </div>
         <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none"></div>
       </div>
@@ -98,7 +90,12 @@ function Home() {
             <h4 className="text-3xl tracking-wide mb-2">Join the Community!</h4>
             <hr className="my-4" />
             <p className="text-xl tracking-wide">
-              <Link to="/login" className="text-[#6e91b8] text-2xl hover:text-hover-blue">
+              <p className="hidden lg:block mt-6 text-xl leading-8 tracking-wider">
+                Introducing AstronoME, where stargazing meets community. Our web app is your one-stop celestial hub, delivering local weather insights,
+                moon phases, near-Earth events, and more. Explore the wonders of the universe alongside a thriving community of fellow astronomers. With
+                AstronoME, we&#39;re not just reaching for the stars; we&#39;re bringing the stars right to your fingertips.
+              </p>
+              <Link to="/login" className="text-[#6e91b8] text-xl hover:text-hover-blue">
                 Login{" "}
               </Link>
               or
@@ -106,7 +103,7 @@ function Home() {
                 {" "}
                 Signup{" "}
               </Link>
-              to gain access to all of AstronoME's best features while connecting with other star gazers around the nation!{" "}
+                now!
             </p>
           </section>
         )}
