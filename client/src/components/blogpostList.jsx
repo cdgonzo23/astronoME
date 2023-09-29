@@ -1,8 +1,31 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { REMOVE_BLOGPOST } from '../utils/mutations'
+import { QUERY_BLOGPOSTS } from "../utils/queries";
+
 
 const BlogpostList = ({ blogposts }) => {
+  const [ removeBlogpost ] = useMutation(REMOVE_BLOGPOST, {
+    refetchQueries: [
+      QUERY_BLOGPOSTS,
+        'blogposts'
+    ]
+  })
 
+  async function handlePostDelete (blogpostId) {
+    // e.preventDefault();
+    try {
+      await removeBlogpost({
+        variables: {
+          blogpostId: blogpostId
+        }
+      })
+      document.location.reload();
+    } catch (err) {
+      console.error(err);
+    }
+  }
   if (!blogposts.length) {
     return <h3 className="text-gray-300 text-center">No Posts Yet</h3>;
   }
@@ -30,12 +53,27 @@ const BlogpostList = ({ blogposts }) => {
                 )}
                 
               </Link>
-              <Link
+              {(document.location.pathname === '/me') ? (
+                <div>
+                <Link
+                  className="text-gray-300 m-2 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-4 py-2 text-sm font-md"
+                  to={`/community/${blogpost._id}`}
+                  >
+                  View Post
+                </Link>
+                <button
+                onClick={() => handlePostDelete(blogpost._id)}
+                className="text-gray-300 bg-galaxy-red hover:bg-[#692217] hover:text-white rounded-md px-4 py-2 text-sm font-md">Delete Post</button>
+                </div>
+              ) : (
+                <Link
                 className="text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-4 py-2 text-sm font-md"
                 to={`/community/${blogpost._id}`}
-              >
+                >
                 View Post
               </Link>
+              )}
+
             </div>
           </div>
         ))}

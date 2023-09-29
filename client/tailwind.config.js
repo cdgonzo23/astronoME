@@ -9,7 +9,8 @@ export default {
       colors: {
         'darkest': '#0D1018',
         'div-gray': '#2C2B30',
-        'hover-blue': '#3E546F'
+        'hover-blue': '#3E546F',
+        'galaxy-red': '#784037'
       },
     }
   },

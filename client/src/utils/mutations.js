@@ -57,3 +57,18 @@ export const ADD_COMMENT = gql`
   }
 `;
 
+export const REMOVE_BLOGPOST = gql`
+  mutation removeBlogpost($blogpostId: ID!) {
+    removeBlogpost(blogpostId: $blogpostId) {
+      _id
+      blogpostText
+      blogpostAuthor
+      blogpostLocation
+      createdAt
+      comments {
+        _id
+        commentText
+      }
+    }
+  }
+`;
