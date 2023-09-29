@@ -7,22 +7,20 @@ const CommentList = ({ comments = [] }) => {
   
     return (
       <>
-        <h3 style={{ paddingBottom: '4px', borderBottom: '1px dotted #1c8ebd' }}>
+        <h3 className="pb-4 border-b-[1px] border-dotted border-hover-blue text-lg text-gray-300" >
           Comments
         </h3>
         <div 
           className="flex-row"
-          style={{ borderBottom: '1px dotted #1c8ebd' }}
         >
           {comments &&
             comments.map((comment) => (
               <div key={comment._id} className="">
                 <div 
-                  className="my-3 p-2 text-light"
-                  style={{ backgroundColor: '#2C2B30', borderRadius: '4px'}}
+                  className="py-4 text-gray-300 rounded w-full flex flex-col sm:flex-row sm:items-center border-b-[1px] pb-4 border-dotted border-hover-blue"
                 >
-                  <h5 className="card-header">{comment.commentAuthor}: </h5>
-                  <p className="card-body px-4 text-sm">{comment.commentText}</p>
+                  <h5 className="card-header text-hover-blue">{comment.commentAuthor}: </h5>
+                  <p className="text-sm sm:ml-4">{comment.commentText}</p>
                 </div>
               </div>
             ))}

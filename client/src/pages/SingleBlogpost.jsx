@@ -20,36 +20,30 @@ const SingleBlogpost = () => {
         return <div>Loading...</div>
     }
     return (
-    <div className="justify-center mx-12 lg:mx-32 my-12 lg:my-32 text-gray-300 font-normal">
-        <h2 
-            className="bg-darkest px-8 pt-8 pb-4 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]"
-            style={{ fontSize: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center'  }}
-        >
-            <Link to={`/users/${blogpost.blogpostAuthor}`}>
+    <div className="flex flex-col items-center mx-12 my-12 md:my-32 text-gray-300">
+        <div className="bg-darkest px-8 pt-8 pb-4 rounded flex flex-col shadow-[5px_2px_53px_5px_#6e91b8b6] w-full md:w-[60%]">
+          <div className="flex flex-col w-full pb-4 border-b-[1px] border-dotted border-hover-blue"> 
+            <Link className="text-2xl hover:text-hover-blue" to={`/users/${blogpost.blogpostAuthor}`}>
                 {blogpost.blogpostAuthor}
             </Link>
-            <span style={{ fontSize: '1rem' }}>
+            <p className="text-md italic text-gray-500" >
                 {blogpost.blogpostLocation}
-            </span>
-            <span style={{ fontSize: '1rem' }}>
+            </p>
+            <p className="text-md italic text-gray-500">
               {blogpost.createdAt}
-            </span>
-        </h2>
-        <blockquote
-          className="p-4"
-          style={{
-            fontSize: '1.5rem',
-            fontStyle: 'italic',
-            lineHeight: '1.5',
-          }}
-        >
-          {blogpost.blogpostText}
-        </blockquote>
+            </p>
+          </div>
 
-      <div className="my-5 px-4">
+            <blockquote className="my-4 text-2xl tracking-normal leading-8">
+              {blogpost.blogpostText}
+            </blockquote>
+        </div>
+
+
+      <div className="my-5 w-full md:w-[60%]">
         <CommentList comments={blogpost.comments} />
       </div>
-      <div className="m-3 p-4 flex justify-center">
+      <div className="m-3 flex justify-center w-full md:w-[60%]">
         <CommentForm blogpostId={blogpost._id} />
       </div>
     </div>

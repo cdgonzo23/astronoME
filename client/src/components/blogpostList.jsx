@@ -9,28 +9,27 @@ const BlogpostList = ({ blogposts }) => {
     <div className="mx-12 my-12 text-gray-300 font-normal">
       {blogposts &&
         blogposts.map((blogpost) => (
-          <div key={blogpost._id} className="mb-8 px-8 pt-8 pb-4 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
-            <h4 className="card-header tracking-wide" style={{ fontSize: '1.5rem', display: 'flex', flexDirection: 'column'}}>
-              <Link to={`/users/${blogpost.blogpostAuthor}`} className='hover:text-hover-blue'>
+          <div key={blogpost._id} className="mb-8 px-4 sm:px-8 pt-8 pb-4 rounded shadow-[5px_2px_53px_5px_#6e91b8b6]">
+            <div className="card-header tracking-wide flex flex-col pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue">
+              <Link to={`/users/${blogpost.blogpostAuthor}`} className="hover:text-hover-blue text-lg">
                 {blogpost.blogpostAuthor}
               </Link>
-              <span style={{ fontSize: '1rem'}}>
+              <span className="text-sm text-gray-500 italic">
                 {blogpost.blogpostLocation}
               </span>
-              <span style={{ fontSize: '1rem'}}>
+              <span className="text-sm text-gray-500 italic">
                 {blogpost.createdAt} 
               </span>
-              </h4>
-            <hr className="my-4" />
-            <div className="leading-7">
+            </div>
+            <div className="leading-7 text-gray-300 text-2xl">
               <p>{blogpost.blogpostText}</p>
             </div>
-            <div className="mx-auto mt-4 px-6 flex justify-center text-gray-300">
+            <div className="mx-auto mt-4 sm:px-6 flex justify-end text-gray-300">
               <Link 
-                className='text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-3 py-2 text-sm font-md'
+                className='text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-4 py-2 text-sm font-md'
                 to={`${blogpost._id}`}
               >
-                Add a Comment
+                View Post
               </Link>
             </div>
           </div>
