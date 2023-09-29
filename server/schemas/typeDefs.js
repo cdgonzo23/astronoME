@@ -7,6 +7,7 @@ const typeDefs = gql`
     email: String
     password: String
     location: String
+    blogposts: [Blogpost]
   }
 
   type Blogpost {
@@ -31,7 +32,6 @@ const typeDefs = gql`
   }
 
   type Query {
-    users: [User]
     user(id: ID!): User
     me: User
     blogposts(username: String): [Blogpost]

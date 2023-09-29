@@ -1,18 +1,16 @@
 const { AuthenticationError } = require('@apollo/server');
 const { User, Blogpost } = require('../models');
 const { signToken } = require('../utils/auth');
+const { countDocuments } = require('../models/User');
 
 const resolvers = {
   Query: {
-    users: async () => {
-      return User.find();
-    },
     user: async (_, args) => {
-      return User.findOne({ _id: args.id });
+      return User.findOne({ _id: args.id }).populate('blogposts');
     },
     me: async (_, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id });
+        return User.findOne({ _id: context.user._id }).populate('blogposts');
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -49,6 +47,7 @@ const resolvers = {
           blogpostText,
           blogpostAuthor: context.user.username,
           blogpostLocation: context.user.location,
+          userId: context.user._id,
         });
         await User.findOneAndUpdate(
           { _id: context.user._id },
