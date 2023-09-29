@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const BlogpostList = ({ blogposts }) => {
+
   if (!blogposts.length) {
     return <h3 className="text-gray-300 text-center">No Posts Yet</h3>;
   }
@@ -22,7 +23,12 @@ const BlogpostList = ({ blogposts }) => {
             </div>
             <div className="mt-4 w-full flex flex-row justify-between text-center text-gray-300">
               <Link to={`/community/${blogpost._id}`}>
-                <p className="hover:text-hover-blue text-lg">{blogposts[index].comments.length} comments</p>
+                {(blogposts[index].comments.length === 1) ? (
+                  <p className="hover:text-hover-blue text-gray-500 text-lg">{blogposts[index].comments.length} comment</p>
+                ) : (
+                  <p className="hover:text-hover-blue text-gray-500 text-lg">{blogposts[index].comments.length} comments</p>
+                )}
+                
               </Link>
               <Link
                 className="text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-4 py-2 text-sm font-md"
