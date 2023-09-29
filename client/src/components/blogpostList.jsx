@@ -20,9 +20,9 @@ const BlogpostList = ({ blogposts }) => {
             <div className="leading-7 text-gray-300 text-2xl">
               <p>{blogpost.blogpostText}</p>
             </div>
-            <div className="mt-4 w-full flex flex-row justify-between text-gray-300">
+            <div className="mt-4 w-full flex flex-row justify-between text-center text-gray-300">
               <Link to={`/community/${blogpost._id}`}>
-                <p>{blogposts[index].comments.length} comments</p>
+                <p className="hover:text-hover-blue text-lg">{blogposts[index].comments.length} comments</p>
               </Link>
               <Link
                 className="text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-4 py-2 text-sm font-md"
