@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_USER = gql`
   query user($username: String!) {
@@ -13,6 +13,9 @@ export const QUERY_USER = gql`
         blogpostAuthor
         blogpostLocation
         createdAt
+        comments {
+          _id
+        }
       }
     }
   }
@@ -31,6 +34,9 @@ export const QUERY_ME = gql`
         blogpostAuthor
         blogpostLocation
         createdAt
+        comments {
+          _id
+        }
       }
     }
   }
@@ -44,9 +50,12 @@ export const QUERY_BLOGPOSTS = gql`
       blogpostAuthor
       blogpostLocation
       createdAt
+      comments {
+        _id
+      }
     }
   }
-`
+`;
 
 export const QUERY_SINGLE_BLOGPOST = gql`
   query blogpost($blogpostId: ID!) {
