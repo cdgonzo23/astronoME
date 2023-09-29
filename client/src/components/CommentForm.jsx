@@ -39,26 +39,26 @@ const CommentForm = ({ blogpostId }) => {
   };
 
   return (
-    <div>
+    <div className='w-full '>
       {Auth.loggedIn() ? (
         <>
           <form
-            className="flex-row justify-center justify-space-between-md align-center"
+            className="flex flex-col justify-center items-center w-full"
             onSubmit={handleFormSubmit}
           >
-            <div className="">
+            <div className="w-full">
               <textarea
                 name="commentText"
                 placeholder="Add your comment..."
                 value={commentText}
-                className='mb-3 bg-gray-300 pl-2 pr-2 py-1 rounded text-darkest'
-                style={{ lineHeight: '1.5', resize: 'horizontal' }}
+                className='mb-3 bg-gray-300 pl-2 pr-2 py-1 rounded text-darkest w-full leading-6'
+                style={{resize: 'horizontal' }}
                 onChange={handleChange}
               ></textarea>
             </div>
 
-            <div className="flex justify-center">
-              <button className='px-4 py-2 bg-div-gray hover:bg-hover-blue rounded flex justify-center' type="submit">
+            <div className="flex justify-end w-full">
+              <button className='px-4 py-2 bg-div-gray hover:bg-hover-blue rounded flex' type="submit">
                 Add Comment
               </button>
             </div>

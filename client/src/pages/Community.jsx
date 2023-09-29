@@ -18,11 +18,11 @@ const Blogposts = () => {
             {Auth.loggedIn() ? (
                 <>
                   <div className="mx-auto px-6 lg:px-8 flex justify-center text-gray-300">
-                    <Link to="/blogpostform" className='text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-3 py-2 text-sm font-md'>
+                    <Link to="/blogpostform" className='text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-4 py-2 text-lg font-md'>
                       Add a Post!
                     </Link>
                 </div>
-                <div className="flex-column justify-center">
+                <div className="w-full mb-2 md:w-[60%]">
                   <BlogpostList
                     blogposts={blogposts}
                   />
