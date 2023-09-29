@@ -24,7 +24,7 @@ const BlogpostList = ({ blogposts }) => {
             <div className="leading-7 text-gray-300 text-2xl">
               <p>{blogpost.blogpostText}</p>
             </div>
-            <div className="mx-auto mt-4 sm:px-6 flex justify-end text-gray-300">
+            <div className="mt-4 w-full flex flex-row justify-end text-gray-300">
               <Link 
                 className='text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-4 py-2 text-sm font-md'
                 to={`${blogpost._id}`}
