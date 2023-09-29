@@ -19,7 +19,7 @@ const CommentList = ({ comments = [] }) => {
                 <div 
                   className="py-4 text-gray-300 rounded w-full flex flex-col sm:flex-row sm:items-center border-b-[1px] pb-4 border-dotted border-hover-blue"
                 >
-                  <h5 className="card-header text-hover-blue">{comment.commentAuthor}: </h5>
+                  <h5 className="card-header text-[#6e91b8b6]">{comment.commentAuthor}: </h5>
                   <p className="text-sm sm:ml-4">{comment.commentText}</p>
                 </div>
               </div>

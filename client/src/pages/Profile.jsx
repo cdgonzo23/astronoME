@@ -65,25 +65,25 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="m-8">
-          <div className="m-7px-4 sm:px-0">
-            <h3 className="text-base font-semibold leading-7 text-white">User Information</h3>
+        <div className="m-8 flex flex-col justify-center items-center">
+          <div className=" px-4 sm:px-0 text-left w-full">
+            <h3 className="text-lg font-semibold leading-7 text-gray-300">User Information</h3>
           </div>
-          <div className="mt-6 border-t border-white/10">
+          <div className="mt-6 border-t border-white/10 w-full flex flex-col items-start">
             <dl className="divide-y divide-white/10">
               <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt className="text-sm font-medium leading-6 text-white">Location</dt>
-                <dd className="mt-1 text-sm leading-6 text-gray-400 sm:col-span-2 sm:mt-0">{user.location}</dd>
+                <dt className="text-sm font-medium leading-6 text-gray-400">Location</dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-200 sm:col-span-2 sm:mt-0">{user.location}</dd>
               </div>
               <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt className="text-sm font-medium leading-6 text-white">Email address</dt>
-                <dd className="mt-1 text-sm leading-6 text-gray-400 sm:col-span-2 sm:mt-0">{user.email}</dd>
+                <dt className="text-sm font-medium leading-6 text-gray-400">Email address</dt>
+                <dd className="mt-1 text-sm leading-6 text-gray-200 sm:col-span-2 sm:mt-0">{user.email}</dd>
               </div>
             </dl>
           </div>
           <hr className="my-4" />
-          <h3 className="text-base font-semibold leading-7 text-white mt-12">Your Posts:</h3>
-          <div className="flex-column justify-center">
+          <h3 className="text-base font-semibold leading-7 text-gray-400 mt-12">Your Posts:</h3>
+          <div className="w-full mb-2 md:w-[60%]">
             <BlogpostList
               blogposts={user.blogposts}
             />

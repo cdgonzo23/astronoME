@@ -7,6 +7,7 @@ import CommentForm from '../components/CommentForm';
 import { QUERY_SINGLE_BLOGPOST } from '../utils/queries';
 
 const SingleBlogpost = () => {
+    
     const { blogpostId } = useParams();
 
     const { loading, data } = useQuery(QUERY_SINGLE_BLOGPOST, {

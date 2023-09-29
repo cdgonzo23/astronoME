@@ -62,9 +62,9 @@ function Home() {
         className="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu"
         aria-hidden="true"
       ></div>
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 flex justify-center text-gray-300">
-        <div className="mx-auto lg:mx-0 text-center">
-          <h2 className="text-4xl font-semibold sm:text-6xl tracking-wider">
+      <div className="flex flex-row justify-center text-gray-300">
+        <div className="text-center w-full flex flex-row justify-center">
+          <h2 className="text-5xl font-semibold sm:text-6xl tracking-wider">
             Astrono<span className="text-[#6e91b8]">ME</span>
           </h2>
           {/* <p className="hidden lg:block mt-6 text-lg leading-8 tracking-wider">
@@ -80,20 +80,24 @@ function Home() {
         <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none"></div>
       </div>
 
-      <div className="grid grid-cols-4 lg:grid-cols-12 gap-12 justify-evenly mx-12 lg:mx-32 my-24 lg:my-32 text-gray-300 font-normal">
+      <div className="grid grid-cols-4 md:grid-cols-10 xl:grid-cols-12 gap-12 justify-evenly mx-12 lg:mx-32 my-24 lg:my-32 text-gray-300 font-normal">
         {Auth.loggedIn() ? (
-          <section className="bg-darkest col-span-4 md:col-span-2 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
+          <section className="bg-darkest col-span-4 md:col-span-5 xl:col-span-4 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
             <Weather />
           </section>
         ) : (
-          <section className="bg-darkest col-span-4 lg:col-span-12 md:col-span-2 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
+          <section className="bg-darkest col-span-4 md:col-span-10 xl:col-span-12 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
             <h4 className="text-3xl tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue">Join the Community!</h4>
             <p className="text-xl tracking-wide">
-              <p className="hidden lg:block mt-6 text-xl leading-8 tracking-wider">
+              <p className="hidden lg:block my-6 text-xl leading-8 tracking-wider">
                 Introducing AstronoME, where stargazing meets community. Our web app is your one-stop celestial hub, delivering local weather insights,
                 moon phases, near-Earth events, and more. Explore the wonders of the universe alongside a thriving community of fellow astronomers. With
                 AstronoME, we&#39;re not just reaching for the stars; we&#39;re bringing the stars right to your fingertips.
               </p>
+              <p className="lg:hidden my-6 text-lg leading-8 tracking-wider">
+                Introducing AstronoME, where stargazing meets community. With AstronoME, we&#39;re not just reaching for the stars; we&#39;re bringing the
+                stars right to your fingertips.
+              </p> 
               <Link to="/login" className="text-[#6e91b8] text-2xl hover:text-hover-blue">
                 Login{" "}
               </Link>
@@ -107,7 +111,7 @@ function Home() {
           </section>
         )}
 
-        <section className="bg-darkest col-span-4 p-12 md:col-span-2 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
+        <section className="bg-darkest col-span-4 md:col-span-5 xl:col-span-4 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
           <h4 className="text-2xl tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue">Incoming Asteroid</h4>
           {neowsData ? (
             <div className="list-none leading-7">
@@ -133,7 +137,7 @@ function Home() {
             <div className="list-none leading-7">No Asteroid Near Earth Today</div>
           )}
         </section>
-        <section className="bg-darkest col-span-4 md:col-span-2 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
+        <section className="bg-darkest col-span-4 md:col-span-5 xl:col-span-4 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
           <h4 className="text-2xl tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue">Daily Image from NASA</h4>
           {dailyImgUrl ? (
             <div>
