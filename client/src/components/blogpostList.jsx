@@ -40,9 +40,13 @@ const BlogpostList = ({ blogposts }) => {
             <div className="leading-7 text-gray-300 text-2xl">
               <p>{blogpost.blogpostText}</p>
             </div>
-            <div>
-              <img className="w-96 mt-6" src={blogpost.imageUrl} alt="stars image" />
-            </div>
+            {blogpost.imageUrl ? (
+              <div>
+                <img className="w-96 mt-6" src={blogpost.imageUrl} alt={blogpost.imageUrl} />
+              </div>
+            ) : (
+              ""
+            )}
             <div className="mt-6 w-full flex flex-row justify-between text-center text-gray-300">
               <Link to={`/community/${blogpost._id}`}>
                 {blogposts[index].comments.length === 1 ? (
