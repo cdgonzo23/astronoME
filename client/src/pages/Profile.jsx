@@ -9,17 +9,15 @@ import BlogpostList from "../components/BlogpostList";
 
 const Profile = () => {
   const { username } = useParams();
-  const { loading, data, error } = useQuery(
-    username ? QUERY_USER : QUERY_ME, 
-    {
-      variables: { username: username },
-    });
+  const { loading, data, error } = useQuery(username ? QUERY_USER : QUERY_ME, {
+    variables: { username: username },
+  });
 
   const user = data?.user || data?.me || {};
 
   if (error) console.log(error);
 
-  console.log(username)
+  console.log(username);
   // redirect to personal profile page if username is yours
   if (Auth.loggedIn() && Auth.getProfile().data.username === username) {
     return <Navigate to="/me" />;
@@ -30,12 +28,7 @@ const Profile = () => {
   }
 
   if (!user?.username) {
-    return (
-      <h4>
-        You need to be logged in to see this. Use the navigation links above to
-        sign up or log in!
-      </h4>
-    );
+    return <h4>You need to be logged in to see this. Use the navigation links above to sign up or log in!</h4>;
   }
 
   // console.log(user.username)
@@ -84,12 +77,10 @@ const Profile = () => {
           <hr className="my-4" />
           <h3 className="text-base font-semibold leading-7 text-gray-400 mt-12">Your Posts:</h3>
           <div className="w-full mb-2 md:w-[60%]">
-            <BlogpostList
-              blogposts={user.blogposts}
-            />
+            <BlogpostList blogposts={user.blogposts} />
           </div>
         </div>
-      </div >
+      </div>
     </>
   );
 };

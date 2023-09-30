@@ -42,37 +42,55 @@ const BlogpostForm = () => {
     }
   };
 
-  const renderForm = () => {
-    // if (data) {
-    //   return <Navigate to='/community' replace />
-    // }
-    return (
-      <form className="" onSubmit={handleFormSubmit}>
-        <textarea
-          className="mb-4 bg-gray-300 pl-2 pr-2 py-1 rounded text-darkest w-full"
-          name="blogpostText"
-          value={blogpostText}
-          style={{ height: "150px", resize: "vertical" }}
-          onChange={handleChange}
-        ></textarea>
-        <div className="flex justify-between w-full">
-          <CloudinaryUploadWidget setImg={setImageUrl} />
-          <button type="submit" className="px-4 py-2 bg-div-gray hover:bg-hover-blue rounded">
-            Add Post
-          </button>
-        </div>
-      </form>
-    );
-  };
+  // const renderForm = () => {
+  // if (data) {
+  //   return <Navigate to='/community' replace />
+  // }
   return (
     <main className="bg-darkest text-gray-300 flex flex-col items-center justify-center mt-32">
       <div className="flex flex-col w-full mx-8 mb-2 md:w-[60%]">
         <h4 className="mb-8 text-2xl">What Do You See in the Stars Tonight?</h4>
-        {renderForm()}
+
+        <form className="" onSubmit={handleFormSubmit}>
+          <textarea
+            className="mb-4 bg-gray-300 pl-2 pr-2 py-1 rounded text-darkest w-full"
+            name="blogpostText"
+            value={blogpostText}
+            style={{ height: "150px", resize: "vertical" }}
+            onChange={handleChange}
+          ></textarea>
+
+          <div className="flex justify-end w-full">
+            <div className="mx-5">
+              <CloudinaryUploadWidget setImg={setImageUrl} />
+            </div>
+            <button type="submit" className="px-4 py-2 bg-div-gray hover:bg-hover-blue rounded">
+              Add Post
+            </button>
+          </div>
+          {imageUrl !== "" ? (
+            <>
+              {/* <p className="text-xl text-green-400">Image Uploaded</p> */}
+              <img className="w-96" src={imageUrl} alt={imageUrl} />
+            </>
+          ) : (
+            ""
+          )}
+        </form>
         {error && <div>{error.message}</div>}
       </div>
     </main>
   );
 };
+// return (
+//   <main className="bg-darkest text-gray-300 flex flex-col items-center justify-center mt-32">
+//     <div className="flex flex-col w-full mx-8 mb-2 md:w-[60%]">
+//       <h4 className="mb-8 text-2xl">What Do You See in the Stars Tonight?</h4>
+//       {renderForm()}
+//       {error && <div>{error.message}</div>}
+//     </div>
+//   </main>
+// );
+// };
 
 export default BlogpostForm;

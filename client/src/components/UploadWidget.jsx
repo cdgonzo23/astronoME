@@ -38,15 +38,15 @@ const CloudinaryUploadWidget = ({ setImg }) => {
   }, [setImg]);
 
   return (
-    <>
+    <div>
       {data ? (
-        <img src={data.thumbnail_url} alt={data.original_filename} />
+        ""
       ) : (
         <button type="button" id="upload_widget" className="cloudinary-button px-4 py-2 bg-div-gray hover:bg-hover-blue rounded">
           Upload Your Image
         </button>
       )}
-    </>
+    </div>
   );
 };
 
