@@ -30,19 +30,23 @@ const BlogpostList = ({ blogposts }) => {
       {blogposts &&
         blogposts.map((blogpost, index) => (
           <div key={blogpost._id} className="mb-8 px-4 sm:px-8 pt-8 pb-4 rounded shadow-[5px_2px_53px_5px_#6e91b8b6]">
-            <div className="card-header tracking-wide flex flex-col pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue">
+            <div className="card-header tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue">
               <Link to={`/user/${blogpost.blogpostAuthor}`} className="hover:text-hover-blue text-lg">
                 {blogpost.blogpostAuthor}
               </Link>
-              <span className="text-sm text-gray-500 italic">{blogpost.blogpostLocation}</span>
-              <span className="text-sm text-gray-500 italic">{blogpost.createdAt}</span>
+              <div className="text-sm text-gray-500 italic">{blogpost.blogpostLocation}</div>
+              <div className="text-sm text-gray-500 italic">{blogpost.createdAt}</div>
             </div>
             <div className="leading-7 text-gray-300 text-2xl">
               <p>{blogpost.blogpostText}</p>
             </div>
-            <div>
-              <img className="w-96 mt-6" src={blogpost.imageUrl} alt="stars image" />
-            </div>
+            {blogpost.imageUrl ? (
+              <div>
+                <img className="w-96 mt-6" src={blogpost.imageUrl} alt={blogpost.imageUrl} />
+              </div>
+            ) : (
+              ""
+            )}
             <div className="mt-6 w-full flex flex-row justify-between text-center text-gray-300">
               <Link to={`/community/${blogpost._id}`}>
                 {blogposts[index].comments.length === 1 ? (

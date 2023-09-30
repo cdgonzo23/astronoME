@@ -90,14 +90,14 @@ function Home() {
             <h4 className="text-3xl tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue">Join the Community!</h4>
             <p className="text-xl tracking-wide">
               <p className="hidden lg:block my-6 text-xl leading-8 tracking-wider">
-                Introducing AstronoME, where stargazing meets community. Our web app is your one-stop celestial hub, delivering local weather insights,
-                moon phases, near-Earth events, and more. Explore the wonders of the universe alongside a thriving community of fellow astronomers. With
-                AstronoME, we&#39;re not just reaching for the stars; we&#39;re bringing the stars right to your fingertips.
+                Introducing AstronoME, where stargazing meets community. Our web app is your one-stop celestial hub, delivering local weather
+                insights, moon phases, near-Earth events, and more. Explore the wonders of the universe alongside a thriving community of fellow
+                astronomers. With AstronoME, we&#39;re not just reaching for the stars; we&#39;re bringing the stars right to your fingertips.
               </p>
               <p className="lg:hidden my-6 text-lg leading-8 tracking-wider">
-                Introducing AstronoME, where stargazing meets community. With AstronoME, we&#39;re not just reaching for the stars; we&#39;re bringing the
-                stars right to your fingertips.
-              </p> 
+                Introducing AstronoME, where stargazing meets community. With AstronoME, we&#39;re not just reaching for the stars; we&#39;re bringing
+                the stars right to your fingertips.
+              </p>
               <Link to="/login" className="text-[#6e91b8] text-2xl hover:text-hover-blue">
                 Login{" "}
               </Link>
@@ -106,7 +106,7 @@ function Home() {
                 {" "}
                 Signup{" "}
               </Link>
-                now!
+              now!
             </p>
           </section>
         )}
@@ -125,8 +125,7 @@ function Home() {
                 <span className="text-[#6e91b8]">Speed:</span> {Math.floor(neowsData.close_approach_data[0].relative_velocity.miles_per_hour)} mph
               </li>
               <li>
-                <span className="text-[#6e91b8]">Optimal View Time:</span> {neowsData.close_approach_data[0].close_approach_date_full.split(" ")[1]}{" "}
-                UTC
+                <span className="text-[#6e91b8]">Nearest Pass:</span> {neowsData.close_approach_data[0].close_approach_date_full.split(" ")[1]} EDT
               </li>
 
               <li>

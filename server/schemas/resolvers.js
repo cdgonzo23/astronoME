@@ -6,11 +6,17 @@ const { countDocuments } = require("../models/User");
 const resolvers = {
   Query: {
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate("blogposts");
+      return User.findOne({ username }).populate({
+        path: "blogposts",
+        options: { sort: { createdAt: -1 } },
+      });
     },
     me: async (_, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate("blogposts");
+        return User.findOne({ _id: context.user._id }).populate({
+          path: "blogposts",
+          options: { sort: { createdAt: -1 } },
+        });
       }
       throw new AuthenticationError("You need to be logged in!");
     },
