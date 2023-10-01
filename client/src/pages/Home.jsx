@@ -24,7 +24,7 @@ function Home() {
           throw new Error("Response from neows at Nasa went wrong!");
         }
         const neows = await neowsRes.json();
-        console.log(neows);
+        // console.log(neows);
         setNeowsData(neows.near_earth_objects[currentDate][0]);
       } catch (error) {
         console.error(error);
@@ -40,7 +40,7 @@ function Home() {
         }
 
         const dailyImg = await dailyImgRes.json();
-        console.log(dailyImg);
+        // console.log(dailyImg);
         setDailyImgUrl(dailyImg);
       } catch (error) {
         console.error(error);
@@ -88,7 +88,7 @@ function Home() {
         ) : (
           <section className="bg-darkest col-span-4 md:col-span-10 xl:col-span-12 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
             <h4 className="text-3xl tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue">Join the Community!</h4>
-            <p className="text-xl tracking-wide">
+            <div className="text-xl tracking-wide">
               <p className="hidden lg:block my-6 text-xl leading-8 tracking-wider">
                 Introducing AstronoME, where stargazing meets community. Our web app is your one-stop celestial hub, delivering local weather
                 insights, moon phases, near-Earth events, and more. Explore the wonders of the universe alongside a thriving community of fellow
@@ -107,7 +107,7 @@ function Home() {
                 Signup{" "}
               </Link>
               now!
-            </p>
+            </div>
           </section>
         )}
 

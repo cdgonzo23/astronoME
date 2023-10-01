@@ -1,9 +1,11 @@
 // Node Modules
 import { Navigate, useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
+import { useState } from "react";
 // Utilities
 import Auth from "../utils/auth";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
+import { EDIT_USER } from "../utils/mutations";
 import BlogpostList from "../components/BlogpostList";
 // Components
 
@@ -17,7 +19,43 @@ const Profile = () => {
 
   if (error) console.log(error);
 
-  console.log(username);
+  // console.log(username);
+
+  const [editUserDisplay, setEditUserDisplay] = useState(false);
+
+  const [formState, setFormState] = useState({email: '', location: ''})
+  const [editUser] = useMutation(EDIT_USER, {
+    refetchQueries: [QUERY_ME, "me"],
+  });
+  
+  const handleChange = async (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleEditUser = async (event) => {
+    event.preventDefault();
+    try {
+      if (formState.email === '') {
+        formState.email = user.email
+      }
+      if (formState.location === '') {
+        formState.location = user.location
+      }
+      await editUser({
+        variables: { ...formState },
+      });
+    } catch (e) {
+      console.error(e);
+    }
+
+    setEditUserDisplay(false);
+  };
+
   // redirect to personal profile page if username is yours
   if (Auth.loggedIn() && Auth.getProfile().data.username === username) {
     return <Navigate to="/me" />;
@@ -31,7 +69,6 @@ const Profile = () => {
     return <h4>You need to be logged in to see this. Use the navigation links above to sign up or log in!</h4>;
   }
 
-  // console.log(user.username)
 
   return (
     <>
@@ -61,20 +98,67 @@ const Profile = () => {
         <div className="m-8 flex flex-col justify-center items-center">
           <div className=" px-4 sm:px-0 text-left w-full">
             <h3 className="text-lg font-semibold leading-7 text-gray-300">User Information</h3>
+            {username ? (null) : (
+              <>
+              <button 
+                className="text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-2 py-1 mt-2"
+                style={{ fontSize: '0.75rem'}}
+                onClick={() => setEditUserDisplay(!editUserDisplay)}
+              >
+                Edit User Information
+              </button>
+              </>
+            )}
           </div>
-          <div className="mt-6 border-t border-white/10 w-full flex flex-col items-start">
-            <dl className="divide-y divide-white/10">
-              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt className="text-sm font-medium leading-6 text-gray-400">Location</dt>
-                <dd className="mt-1 text-sm leading-6 text-gray-200 sm:col-span-2 sm:mt-0">{user.location}</dd>
-              </div>
-              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt className="text-sm font-medium leading-6 text-gray-400">Email address</dt>
-                <dd className="mt-1 text-sm leading-6 text-gray-200 sm:col-span-2 sm:mt-0">{user.email}</dd>
-              </div>
-            </dl>
-          </div>
-          <hr className="my-4" />
+          {editUserDisplay ? (
+            <div className="mt-6 border-t border-white/10 w-full flex flex-col items-start">
+              <dl className="divide-y divide-white/10">
+                  <form onSubmit={handleEditUser}>
+                    <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                      <dt className="text-sm font-medium leading-6 text-gray-400">Location</dt>
+                      <input
+                        className='pl-2 pr-24 py-1 rounded text-darkest'
+                        // placeholder={user.location}
+                        name="location"
+                        value={formState.location || user.location}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                      <dt className="text-sm font-medium leading-6 text-gray-400">Email address</dt>
+                      <input
+                        className='pl-2 py-1 rounded text-darkest'
+                        // placeholder={user.email}
+                        name="email"
+                        type="email"
+                        value={formState.email || user.email}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <button 
+                      type="submit" 
+                      className="text-gray-300 bg-galaxy-red hover:bg-[#692217] hover:text-white rounded-md px-4 py-2 text-sm font-md"
+                    >
+                      Edit Information
+                    </button>
+                  </form>
+              </dl>
+            </div>
+          ) : (
+            <div className="mt-6 border-t border-white/10 w-full flex flex-col items-start">
+              <dl className="divide-y divide-white/10">
+                <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                  <dt className="text-sm font-medium leading-6 text-gray-400">Location</dt>
+                  <dd className="mt-1 text-sm leading-6 text-gray-200 sm:col-span-2 sm:mt-0">{user.location}</dd>
+                </div>
+                <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                  <dt className="text-sm font-medium leading-6 text-gray-400">Email address</dt>
+                  <dd className="mt-1 text-sm leading-6 text-gray-200 sm:col-span-2 sm:mt-0">{user.email}</dd>
+                </div>
+              </dl>
+            </div>
+          )}
+          
           <h3 className="text-base font-semibold leading-7 text-gray-400 mt-12">Your Posts:</h3>
           <div className="w-full mb-2 md:w-[60%]">
             <BlogpostList blogposts={user.blogposts} />
