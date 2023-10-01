@@ -24,6 +24,17 @@ export const ADD_USER = gql`
   }
 `;
 
+export const EDIT_USER = gql`
+  mutation editUser($email: String!, $location: String!) {
+    editUser(email: $email, location: $location) {
+      token
+      user {
+        _id
+      }
+    }
+  }
+`;
+
 export const ADD_BLOGPOST = gql`
   mutation addBlogpost($blogpostText: String!, $imageUrl: String) {
     addBlogpost(blogpostText: $blogpostText, imageUrl: $imageUrl) {

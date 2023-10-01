@@ -8,7 +8,7 @@ const BlogpostList = ({ blogposts }) => {
   const [removeBlogpost] = useMutation(REMOVE_BLOGPOST, {
     refetchQueries: [QUERY_BLOGPOSTS, "blogposts"],
   });
-  console.log("blogposts", blogposts);
+  // console.log("blogposts", blogposts);
   async function handlePostDelete(blogpostId) {
     // e.preventDefault();
     try {

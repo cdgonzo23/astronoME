@@ -35,6 +35,15 @@ const resolvers = {
 
       return { token, user };
     },
+    editUser: async (parent, { email, location }, context) => {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { email, location },
+          { new: true }
+        );
+        const token = signToken(updatedUser)
+        return { token, updatedUser };
+    },
     login: async (_, { email, password }) => {
       const user = await User.findOne({ email });
       if (!user) {
