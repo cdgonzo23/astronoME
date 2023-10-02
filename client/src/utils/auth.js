@@ -26,6 +26,11 @@ class AuthService {
       return false;
     }
   }
+  // remove old token and replace with new token from editUser mutation
+  updateToken(idToken) {
+    localStorage.removeItem('id_token');
+    localStorage.setItem('id_token', idToken);
+  }
 
   getToken() {
     // Retrieves the user token from localStorage

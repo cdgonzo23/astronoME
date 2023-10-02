@@ -46,9 +46,10 @@ const Profile = () => {
       if (formState.location === '') {
         formState.location = user.location
       }
-      await editUser({
+     const { data } = await editUser({
         variables: { ...formState },
       });
+      Auth.updateToken(data.editUser.token);
     } catch (e) {
       console.error(e);
     }
