@@ -49,9 +49,9 @@ const BlogpostForm = () => {
   return (
     <main className="bg-darkest text-gray-300 flex flex-col items-center justify-center mt-32">
       <div className="flex flex-col w-full mx-8 mb-2 md:w-[60%]">
-        <h4 className="mb-8 text-2xl">What Do You See in the Stars Tonight?</h4>
+        <h4 className="mb-8 text-2xl font-heading">What Do You See in the Stars Tonight?</h4>
 
-        <form className="" onSubmit={handleFormSubmit}>
+        <form className="font-body" onSubmit={handleFormSubmit}>
           <textarea
             className="mb-4 bg-gray-300 pl-2 pr-2 py-1 rounded text-darkest w-full"
             name="blogpostText"
@@ -60,7 +60,7 @@ const BlogpostForm = () => {
             onChange={handleChange}
           ></textarea>
 
-          <div className="flex justify-end w-full">
+          <div className="flex justify-end w-full font-body">
             <div className="mx-5">
               <CloudinaryUploadWidget setImg={setImageUrl} />
             </div>

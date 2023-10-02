@@ -58,8 +58,8 @@ const Signup = () => {
   };
 
   return (
-    <main className='bg-darkest text-gray-300 flex flex-col items-center justify-center mt-32'>
-      <h4 className='mb-8 text-2xl'>Sign Up</h4>
+    <main className='bg-darkest text-gray-300 flex flex-col items-center justify-center mt-32 font-body'>
+      <h4 className='mb-8 text-2xl font-heading'>Sign Up</h4>
       <div>
         {renderForm()}
         {error && error.message.includes("email") &&           
@@ -71,7 +71,7 @@ const Signup = () => {
               </svg>
             </div>
             <div className="ml-3">
-              <h3 className="text-sm font-medium text-white-800">Invalid login info</h3>
+              <h3 className="text-sm font-body text-white-800">Invalid login info</h3>
               <div className="mt-2 text-sm text-white-700">
                 <p>Email already exists in database. Please login or sign up with another email.</p>
               </div>
@@ -87,7 +87,7 @@ const Signup = () => {
               </svg>
             </div>
             <div className="ml-3">
-              <h3 className="text-sm font-medium text-white-800">Invalid login info</h3>
+              <h3 className="text-sm font-body text-white-800">Invalid login info</h3>
               <div className="mt-2 text-sm text-white-700">
                 <p>Username already exists in database. Please login or sign up with another email.</p>
               </div>
@@ -103,7 +103,7 @@ const Signup = () => {
               </svg>
             </div>
             <div className="ml-3">
-              <h3 className="text-sm font-medium text-white-800">Invalid login info</h3>
+              <h3 className="text-sm font-body text-white-800">Invalid login info</h3>
               <div className="mt-2 text-sm text-white-700">
                 <p>Password must be at least 5 characters long.</p>
               </div>

@@ -4,7 +4,7 @@ const FileSelector = () => {
       <div className="mb-3 w-1/3">
         <label
           htmlFor="formFile"
-          className="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
+          className="mb-2 inline-block text-neutral-700 dark:text-neutral-200 font-body"
         >
           Upload an image (optional)
         </label>

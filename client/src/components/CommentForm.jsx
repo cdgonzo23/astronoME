@@ -43,7 +43,7 @@ const CommentForm = ({ blogpostId }) => {
       {Auth.loggedIn() ? (
         <>
           <form
-            className="flex flex-col justify-center items-center w-full"
+            className="flex flex-col justify-center items-center w-full font-body"
             onSubmit={handleFormSubmit}
           >
             <div className="w-full">

@@ -17,7 +17,7 @@ function Navbar() {
     <Disclosure as="nav" className="bg-darkest">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 font-body">
             <div className="relative flex h-20 items-center">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
@@ -34,10 +34,10 @@ function Navbar() {
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                      <Link to="/" className='text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-3 py-2 text-lg font-md'>
+                      <Link to="/" className='text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-3 py-2 text-lg font-body'>
                         Home
                       </Link>
-                      <Link to="/community" className='text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-3 py-2 text-lg font-md'>
+                      <Link to="/community" className='text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-3 py-2 text-lg font-body'>
                         Community
                       </Link>
 
@@ -115,10 +115,10 @@ function Navbar() {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
-              <Link to="/" className="text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white block rounded-md px-3 py-2 text-base font-medium">
+              <Link to="/" className="text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white block rounded-md px-3 py-2 text-base font-body">
                 Home
               </Link>
-              <Link to="/community" className="text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white block rounded-md px-3 py-2 text-base font-medium">
+              <Link to="/community" className="text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white block rounded-md px-3 py-2 text-base font-body">
                 Community
               </Link>
 

@@ -7,11 +7,11 @@ const CommentList = ({ comments = [] }) => {
   
     return (
       <>
-        <h3 className="pb-4 border-b-[1px] border-dotted border-hover-blue text-lg text-gray-300" >
+        <h3 className="pb-4 border-b-[1px] border-dotted border-hover-blue text-lg text-gray-300 font-body" >
           Comments
         </h3>
         <div 
-          className="flex-row"
+          className="flex-row font-body"
         >
           {comments &&
             comments.map((comment) => (

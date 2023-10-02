@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: [
     "./index.html",
@@ -12,6 +13,11 @@ export default {
         'hover-blue': '#3E546F',
         'galaxy-red': '#784037'
       },
+      fontFamily: {
+        'body': ['Nunito'],
+        'heading': ['Exo'],
+        // 'heading': ['Jura'],
+      }
     }
   },
   plugins: [],
