@@ -42,14 +42,14 @@ const Login = () => {
   const renderForm = () => {
     if (data) {
       return (
-        <p>
+        <p className='font-body'>
           Success! You may now head{' '}
           <Link to="/">back to the homepage.</Link>
         </p>
       )
     } 
     return (
-      <form className="flex flex-col items-center" onSubmit={handleFormSubmit}>
+      <form className="flex flex-col items-center font-body" onSubmit={handleFormSubmit}>
         <input
           className='mb-8 bg-gray-300 pl-2 pr-24 py-1 rounded text-darkest'
           placeholder="Your email"
@@ -75,7 +75,7 @@ const Login = () => {
 
   return (
     <main className='bg-darkest text-gray-300 flex flex-col items-center justify-center mt-32'>
-      <h4 className='mb-8 text-2xl'>Login</h4>
+      <h4 className='mb-8 text-2xl font-heading'>Login</h4>
       <div>
         {renderForm()}
         {error && 
@@ -87,7 +87,7 @@ const Login = () => {
             </svg>
           </div>
           <div className="ml-3">
-            <h3 className="text-sm font-medium text-white-800">Invalid login info</h3>
+            <h3 className="text-sm font-body text-white-800">Invalid login info</h3>
             <div className="mt-2 text-sm text-white-700">
               <p>Username/Password credentials are incorrect.</p>
             </div>

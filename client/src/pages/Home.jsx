@@ -64,45 +64,36 @@ function Home() {
       ></div>
       <div className="flex flex-row justify-center text-gray-300">
         <div className="text-center w-full flex flex-row justify-center">
-          <h2 className="text-5xl font-semibold sm:text-6xl tracking-wider">
+          <h2 className="text-5xl font-heading sm:text-6xl tracking-wider">
             Astrono<span className="text-[#6e91b8]">ME</span>
           </h2>
-          {/* <p className="hidden lg:block mt-6 text-lg leading-8 tracking-wider">
-            Introducing AstronoME, where stargazing meets community. Our web app is your one-stop celestial hub, delivering local weather insights,
-            moon phases, near-Earth events, and more. Explore the wonders of the universe alongside a thriving community of fellow astronomers. With
-            AstronoME, we&#39;re not just reaching for the stars; we&#39;re bringing the stars right to your fingertips.
-          </p>
-          <p className="lg:hidden mt-6 text-lg leading-8 tracking-wider">
-            Introducing AstronoME, where stargazing meets community. With AstronoME, we&#39;re not just reaching for the stars; we&#39;re bringing the
-            stars right to your fingertips.
-          </p> */}
         </div>
         <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none"></div>
       </div>
 
-      <div className="grid grid-cols-4 md:grid-cols-10 xl:grid-cols-12 gap-12 justify-evenly mx-12 lg:mx-32 my-24 lg:my-32 text-gray-300 font-normal">
+      <div className="grid grid-cols-4 md:grid-cols-10 xl:grid-cols-12 gap-12 justify-evenly mx-12 lg:mx-32 my-24 lg:my-32 text-gray-300">
         {Auth.loggedIn() ? (
           <section className="bg-darkest col-span-4 md:col-span-5 xl:col-span-4 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
             <Weather />
           </section>
         ) : (
           <section className="bg-darkest col-span-4 md:col-span-10 xl:col-span-12 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
-            <h4 className="text-3xl tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue">Join the Community!</h4>
+            <h4 className="text-3xl tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue font-heading">Join the Community!</h4>
             <div className="text-xl tracking-wide">
-              <p className="hidden lg:block my-6 text-xl leading-8 tracking-wider">
+              <p className="hidden lg:block my-6 text-xl leading-8 tracking-wider font-body">
                 Introducing AstronoME, where stargazing meets community. Our web app is your one-stop celestial hub, delivering local weather
                 insights, moon phases, near-Earth events, and more. Explore the wonders of the universe alongside a thriving community of fellow
                 astronomers. With AstronoME, we&#39;re not just reaching for the stars; we&#39;re bringing the stars right to your fingertips.
               </p>
-              <p className="lg:hidden my-6 text-lg leading-8 tracking-wider">
+              <p className="lg:hidden my-6 text-lg leading-8 tracking-wider font-body">
                 Introducing AstronoME, where stargazing meets community. With AstronoME, we&#39;re not just reaching for the stars; we&#39;re bringing
                 the stars right to your fingertips.
               </p>
-              <Link to="/login" className="text-[#6e91b8] text-2xl hover:text-hover-blue">
+              <Link to="/login" className="text-[#6e91b8] text-2xl hover:text-hover-blue font-heading">
                 Login{" "}
               </Link>
               or
-              <Link to="/signup" className="text-[#ae5446] text-2xl hover:text-galaxy-red">
+              <Link to="/signup" className="text-[#ae5446] text-2xl hover:text-galaxy-red font-heading">
                 {" "}
                 Signup{" "}
               </Link>
@@ -112,9 +103,9 @@ function Home() {
         )}
 
         <section className="bg-darkest col-span-4 md:col-span-5 xl:col-span-4 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
-          <h4 className="text-2xl tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue">Incoming Asteroid</h4>
+          <h4 className="text-2xl tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue font-heading">Incoming Asteroid</h4>
           {neowsData ? (
-            <div className="list-none leading-7">
+            <div className="list-none leading-7 font-body">
               <li>
                 <span className="text-[#6e91b8]">Asteroid Name:</span> {neowsData.name}
               </li>
@@ -137,7 +128,7 @@ function Home() {
           )}
         </section>
         <section className="bg-darkest col-span-4 md:col-span-5 xl:col-span-4 p-12 rounded shadow-[5px_15px_25px_-15px_#6e91b8b6]">
-          <h4 className="text-2xl tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue">Daily Image from NASA</h4>
+          <h4 className="text-2xl tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue font-heading">Daily Image from NASA</h4>
           {dailyImgUrl ? (
             <div>
               <img style={{ width: "300px" }} src={dailyImgUrl.url} alt="Nasa Picture of the day" />

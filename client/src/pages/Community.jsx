@@ -14,11 +14,11 @@ const Blogposts = () => {
   }
 
   return (
-    <main className="bg-darkest text-gray-300 flex flex-col items-center justify-center mt-16">
+    <main className="bg-darkest text-gray-300 flex flex-col items-center justify-center mt-16 font-body">
       {Auth.loggedIn() ? (
         <>
           <div className="mx-auto px-6 lg:px-8 flex justify-center text-gray-300">
-            <Link to="/blogpostform" className="text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-4 py-2 text-lg font-md">
+            <Link to="/blogpostform" className="text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-4 py-2 text-lg font-body">
               Add a Post!
             </Link>
           </div>
@@ -28,13 +28,13 @@ const Blogposts = () => {
         </>
       ) : (
         <>
-          <h4 className="mb-8 text-xl">
+          <h4 className="mb-8 text-xl font-body">
             You need to be logged in to view the community. Please{" "}
-            <Link to="/login" className="text-[#6e91b8] text-2xl hover:text-hover-blue">
+            <Link to="/login" className="text-[#6e91b8] text-2xl hover:text-hover-blue font-heading">
               Login
             </Link>{" "}
             or{" "}
-            <Link to="/signup" className="text-[#ae5446] text-2xl hover:text-galaxy-red">
+            <Link to="/signup" className="text-[#ae5446] text-2xl hover:text-galaxy-red font-heading">
               Signup.
             </Link>
           </h4>
