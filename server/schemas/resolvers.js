@@ -41,7 +41,7 @@ const resolvers = {
           { email, location },
           { new: true }
         );
-        const token = signToken(updatedUser)
+        const token = signToken(updatedUser);
         return { token, updatedUser };
     },
     login: async (_, { email, password }) => {
