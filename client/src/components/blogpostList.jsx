@@ -47,18 +47,18 @@ const BlogpostList = ({ blogposts }) => {
             ) : (
               ""
             )}
-            <div className="mt-6 w-full flex flex-row justify-between text-center text-gray-300">
+            <div className="mt-6 w-full flex flex-col md:flex-row md:justify-between justify-center text-center md:items-center text-gray-300">
               <Link to={`/community/${blogpost._id}`}>
                 {blogposts[index].comments.length === 1 ? (
-                  <p className="hover:text-hover-blue text-gray-500 text-lg">{blogposts[index].comments.length} comment</p>
+                  <p className="hover:text-hover-blue text-gray-500 text-lg text-left">{blogposts[index].comments.length} comment</p>
                 ) : (
-                  <p className="hover:text-hover-blue text-gray-500 text-lg">{blogposts[index].comments.length} comments</p>
+                  <p className="hover:text-hover-blue text-gray-500 text-lg text-left">{blogposts[index].comments.length} comments</p>
                 )}
               </Link>
-              {document.location.pathname === "/me" ? (
-                <div>
+              {(document.location.pathname === "/me") ? (
+                <div className="flex md:flex-row flex-col">
                   <Link
-                    className="text-gray-300 m-2 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-4 py-2 text-sm font-md"
+                    className="text-gray-300 my-2 md:my-0 md:mx-2 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-4 py-2 text-sm font-md"
                     to={`/community/${blogpost._id}`}
                   >
                     View Post
@@ -67,12 +67,12 @@ const BlogpostList = ({ blogposts }) => {
                     onClick={() => handlePostDelete(blogpost._id)}
                     className="text-gray-300 bg-galaxy-red hover:bg-[#692217] hover:text-white rounded-md px-4 py-2 text-sm font-md"
                   >
-                    Delete Post
+                    Delete
                   </button>
                 </div>
               ) : (
                 <Link
-                  className="text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-4 py-2 text-sm font-md"
+                  className="text-gray-300 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-4 py-2 my-2 text-sm font-md"
                   to={`/community/${blogpost._id}`}
                 >
                   View Post

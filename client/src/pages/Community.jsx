@@ -34,7 +34,7 @@ const Blogposts = () => {
               Login
             </Link>{" "}
             or{" "}
-            <Link to="/signup" className="text-[#6e91b8] text-2xl hover:text-hover-blue">
+            <Link to="/signup" className="text-[#ae5446] text-2xl hover:text-galaxy-red">
               Signup.
             </Link>
           </h4>

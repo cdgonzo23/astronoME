@@ -23,7 +23,7 @@ const SingleBlogpost = () => {
     <div className="flex flex-col items-center mx-12 my-12 md:my-32 text-gray-300">
       <div className="bg-darkest px-8 pt-8 pb-4 rounded flex flex-col shadow-[5px_2px_53px_5px_#6e91b8b6] w-full md:w-[60%]">
         <div className="flex flex-col w-full pb-4 border-b-[1px] border-dotted border-hover-blue">
-          <Link className="text-2xl hover:text-hover-blue" to={`/users/${blogpost.blogpostAuthor}`}>
+          <Link className="text-2xl hover:text-hover-blue" to={`/user/${blogpost.blogpostAuthor}`}>
             {blogpost.blogpostAuthor}
           </Link>
           <p className="text-md italic text-gray-500">{blogpost.blogpostLocation}</p>
@@ -32,9 +32,13 @@ const SingleBlogpost = () => {
 
         <blockquote className="my-4 text-2xl tracking-normal leading-8">{blogpost.blogpostText}</blockquote>
 
-        <div>
-          <img className="w-96 my-4" src={blogpost.imageUrl} alt="stars image" />
-        </div>
+        {blogpost.imageUrl ? (
+            <div>
+              <img className="w-96 mt-6" src={blogpost.imageUrl} alt={blogpost.imageUrl} />
+            </div>
+          ) : (
+            ""
+          )}
       </div>
 
       <div className="my-5 w-full md:w-[60%]">

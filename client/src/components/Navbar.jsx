@@ -53,7 +53,7 @@ function Navbar() {
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="h-12 w-12 sm:h-16 sm:w-16 rounded-full"
+                        className="h-12 w-12 sm:h-16 sm:w-16 rounded-full border-2 border-solid border-hover-blue"
                         src="../../grav-logo-png-transparent.png"
                         alt="profile-icon"
                         />
