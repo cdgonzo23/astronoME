@@ -95,8 +95,8 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="m-8 flex flex-col justify-center items-center">
-          <div className=" px-4 sm:px-0 text-left w-full">
+        <div className="flex flex-col justify-center items-center">
+          <div className="m-8 px-4 sm:px-0 text-left w-full">
             <h3 className="text-lg font-semibold leading-7 text-gray-300">User Information</h3>
             {username ? (null) : (
               <>
@@ -158,8 +158,11 @@ const Profile = () => {
               </dl>
             </div>
           )}
-          
-          <h3 className="text-base font-semibold leading-7 text-gray-400 mt-12">Your Posts:</h3>
+          {(document.location.pathname === '/me') ? (
+            <h3 className="text-base font-semibold leading-7 text-gray-400 mt-12">Your Posts:</h3>
+          ) : (
+            <h3 className="text-base font-semibold leading-7 text-gray-400 mt-12">{user.username}&apos;s Posts:</h3>
+          )}
           <div className="w-full mb-2 md:w-[60%]">
             <BlogpostList blogposts={user.blogposts} />
           </div>
