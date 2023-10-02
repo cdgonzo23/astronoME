@@ -29,16 +29,16 @@ const resolvers = {
     },
   },
   Mutation: {
-    addUser: async (parent, { username, email, location, password }) => {
-      const user = await User.create({ username, email, location, password });
+    addUser: async (parent, { username, email, location, password, icon }) => {
+      const user = await User.create({ username, email, location, password, icon });
       const token = signToken(user);
 
       return { token, user };
     },
-    editUser: async (parent, { email, location }, context) => {
+    editUser: async (parent, { email, location, icon }, context) => {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { email, location },
+          { email, location, icon },
           { new: true }
         );
         const token = signToken(updatedUser);

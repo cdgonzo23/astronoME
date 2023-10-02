@@ -7,6 +7,7 @@ export const QUERY_USER = gql`
       username
       email
       location
+      icon
       blogposts {
         _id
         blogpostText
@@ -29,6 +30,7 @@ export const QUERY_ME = gql`
       username
       email
       location
+      icon
       blogposts {
         _id
         blogpostText
