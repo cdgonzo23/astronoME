@@ -13,28 +13,28 @@ const Signup = () => {
     location: "",
     email: "",
     password: "",
-    icon: "",
+    icon: null,
   });
-  // const [iconStyle, setIconStyle] = useState('hover:opacity-50')
-
   const [addUser, { error, data }] = useMutation(ADD_USER);
+  const [icons, setIcons] = useState(iconList);
 
-  // const selectIcon = (event) => {
-  //   const { src, alt } = event.target
-  //   setIconStyle('opacity-50')
-  //   console.log(src, alt)
-  // }
+  console.log('FORM STATE', formState);
+
+  const profileIconSelect = (id) => {
+    setIcons((icons) => (icons.map((icon) => icon.id === id ? ({ ...icon, active: true }) : ({ ...icon, active: false }))))
+    setFormState((formState) => ({
+      ...formState,
+      icon: id,
+    }));
+  }
 
   const handleChange = (event) => {
-    const { name, value, src } = event.target;
-    // console.log()
-    setFormState({
+    const { name, value } = event.target;
+    setFormState((formState) => ({
       ...formState,
       [name]: value,
-      icon: src
-    });
+    }));
   };
-  console.log(formState)
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -42,7 +42,6 @@ const Signup = () => {
       const { data } = await addUser({
         variables: { ...formState },
       });
-      console.log(data)
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
@@ -65,10 +64,10 @@ const Signup = () => {
         <input className='mb-8 bg-gray-300 pl-2 pr-24 py-1 rounded text-darkest' placeholder="******" name="password" type="password" value={formState.password} onChange={handleChange} />
         <p className="mb-4">Select An Icon For Your Profile</p>
         <div style={{display: "flex", maxWidth: '75%', marginBottom:'2rem'}}>
-          {iconList.map((icon) => {
+          {icons.map((icon) => {
             return (
               <div key={icon.id} className="mx-1">
-                <img src={icon.src} alt={icon.label} name="icon" className='hover:opacity-50' onClick={handleChange}/>
+                <img src={icon.src} alt={icon.label} name="icon" className={`hover:opacity-50 rounded-full ${icon.active ? 'bg-white' : ''}`} onClick={() => profileIconSelect(icon.id)}/>
               </div>
             )
           })}
