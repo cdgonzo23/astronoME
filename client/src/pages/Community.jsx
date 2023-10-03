@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // Utilities
 import Auth from "../utils/auth";
 import { QUERY_BLOGPOSTS } from "../utils/queries";
-import BlogpostList from "../components/_BlogpostList";
+import BlogpostList from "../components/BlogpostList";
 
 const Blogposts = () => {
   const { loading, data } = useQuery(QUERY_BLOGPOSTS);
