@@ -22,7 +22,7 @@ const CloudinaryUploadWidget = ({ setImg }) => {
           console.log("Done! Here is the image info: ", result.info.secure_url);
           setData(result.info);
           setImg(result.info.secure_url);
-          document.getElementById("uploadedimage").setAttribute("src", result.info.secure_url);
+          // document.getElementById("uploadedimage").setAttribute("src", result.info.secure_url);
         }
       }
     );
