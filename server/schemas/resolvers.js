@@ -22,10 +22,10 @@ const resolvers = {
     },
     blogposts: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Blogpost.find(params).sort({ createdAt: -1 });
+      return Blogpost.find(params).populate({path: 'blogpostAuthor'}).sort({ createdAt: -1 });
     },
     blogpost: async (parent, { blogpostId }) => {
-      return Blogpost.findOne({ _id: blogpostId });
+      return Blogpost.findOne({ _id: blogpostId }).populate({path: 'blogpostAuthor'});
     },
   },
   Mutation: {
@@ -60,8 +60,7 @@ const resolvers = {
       if (context.user) {
         const blogpost = await Blogpost.create({
           blogpostText,
-          blogpostAuthor: context.user.username,
-          blogpostLocation: context.user.location,
+          blogpostAuthor: context.user._id,
           imageUrl: imageUrl,
           userId: context.user._id,
         });
@@ -92,7 +91,7 @@ const resolvers = {
       if (context.user) {
         const blogpost = await Blogpost.findOneAndDelete({
           _id: blogpostId,
-          blogpostAuthor: context.user.username,
+          blogpostAuthor: context.user._id,
         });
         await User.findOneAndUpdate({ _id: context.user._id }, { $pull: { blogposts: blogpost._id } });
         return blogpost;

@@ -19,11 +19,11 @@ const BlogpostForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
+      console.log(Auth.getProfile().data);
       await addBlogpost({
         variables: {
           blogpostText,
-          blogpostAuthor: Auth.getProfile().data.username,
-          blogpostLocation: Auth.getProfile().data.location,
+          blogpostAuthor: Auth.getProfile().data,
           imageUrl: imageUrl,
         },
       });
@@ -47,7 +47,7 @@ const BlogpostForm = () => {
   //   return <Navigate to='/community' replace />
   // }
   return (
-    <main className="bg-darkest text-gray-300 flex flex-col items-center justify-center mt-32">
+    <main className="bg-darkest text-gray-300 flex flex-col items-center justify-center mt-32 mx-5">
       <div className="flex flex-col w-full mx-8 mb-2 md:w-[60%]">
         <h4 className="mb-8 text-2xl font-heading">What Do You See in the Stars Tonight?</h4>
 
@@ -61,10 +61,13 @@ const BlogpostForm = () => {
           ></textarea>
 
           <div className="flex justify-end w-full font-body">
-            <div className="mx-5">
+            <a href="/community" type="submit" className="mx-2 px-4 py-2 bg-div-gray hover:bg-hover-blue rounded">
+              Cancel Post
+            </a>
+            <div className="mx-2">
               <CloudinaryUploadWidget setImg={setImageUrl} />
             </div>
-            <button type="submit" className="px-4 py-2 bg-div-gray hover:bg-hover-blue rounded">
+            <button type="submit" className="mx-2 px-4 py-2 bg-div-gray hover:bg-hover-blue rounded">
               Add Post
             </button>
           </div>

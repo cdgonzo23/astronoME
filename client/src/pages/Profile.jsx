@@ -6,7 +6,7 @@ import { useState } from "react";
 import Auth from "../utils/auth";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import { EDIT_USER } from "../utils/mutations";
-import BlogpostList from "../components/BlogpostList";
+import BlogPostList from "../components/BlogPostList";
 import iconList from "../components/iconList";
 // Components
 
@@ -17,25 +17,32 @@ const Profile = () => {
   });
 
   const user = data?.user || data?.me || {};
-
   if (error) console.log(error);
 
-  // console.log(username);
+  // console.log('ICON', iconList.find((icon) => icon.id === user.icon));
 
   const [editUserDisplay, setEditUserDisplay] = useState(false);
+  const [icons, setIcons] = useState(iconList);
 
-  const [formState, setFormState] = useState({ email: "", location: "" });
+  const [formState, setFormState] = useState({ email: "", location: "", icon: null });
+
   const [editUser] = useMutation(EDIT_USER, {
     refetchQueries: [QUERY_ME, "me"],
   });
 
-  const handleChange = async (event) => {
-    const { name, value, src } = event.target;
+  const profileIconChange = (id) => {
+    setIcons((icons) => (icons.map((icon) => icon.id === id ? ({ ...icon, active: true }) : ({ ...icon, active: false }))))
+    setFormState((formState) => ({
+      ...formState,
+      icon: id,
+    }));
+  }
 
+  const handleChange = async (event) => {
+    const { name, value } = event.target;
     setFormState({
       ...formState,
       [name]: value,
-      icon: src
     });
   };
 
@@ -48,17 +55,16 @@ const Profile = () => {
       if (formState.location === "") {
         formState.location = user.location;
       }
-      if (formState.icon === "") {
+      if (formState.icon === null) {
         formState.icon = user.icon;
       }
-     const { data } = await editUser({
+      const { data } = await editUser({
         variables: { ...formState },
       });
       Auth.updateToken(data.editUser.token);
     } catch (e) {
       console.error(e);
     }
-
     setEditUserDisplay(false);
   };
 
@@ -66,6 +72,7 @@ const Profile = () => {
   if (Auth.loggedIn() && Auth.getProfile().data.username === username) {
     return <Navigate to="/me" />;
   }
+
   // console.log("user: ", user);
   if (loading) {
     return <h4>Loading...</h4>;
@@ -89,8 +96,8 @@ const Profile = () => {
               <div className="flex-shrink-0">
                 <img
                   className="mx-auto h-20 w-20 rounded-full"
-                  src={user.icon}
-                  alt=""
+                  src={iconList.find((icon) => icon.id === user.icon).src}
+                  alt={iconList.find((icon) => icon.id === user.icon).label}
                 ></img>
               </div>
               <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
@@ -135,64 +142,99 @@ const Profile = () => {
             )}
           </div>
           {editUserDisplay ? (
-            <div className="mt-6 border-t border-white/10 w-full flex flex-col items-start">
-              <dl className="divide-y divide-white/10">
-                <form onSubmit={handleEditUser}>
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-body leading-6 text-gray-400">
-                      Location
-                    </dt>
-                    <input
-                      className="pl-2 pr-24 py-1 rounded text-darkest"
-                      // placeholder={user.location}
-                      name="location"
-                      value={formState.location || user.location}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt className="text-sm font-body leading-6 text-gray-400">
-                      Email address
-                    </dt>
-                    <input
-                      className="pl-2 py-1 rounded text-darkest"
-                      // placeholder={user.email}
-                      name="email"
-                      type="email"
-                      value={formState.email || user.email}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <p className="mb-4 text-gray-300">Change Your Icon</p>
-                  <div
-                    style={{
-                      display: "flex",
-                      maxWidth: "75%",
-                      marginBottom: "2rem",
-                    }}
-                  >
-                    {iconList.map((icon) => {
-                      return (
-                        <div key={icon.id} className="mx-1">
-                          <img
-                            src={icon.src}
-                            alt={icon.label}
-                            name="icon"
-                            className="hover:opacity-50"
-                            onClick={handleChange}
-                          />
+            <div
+              className="relative z-10"
+              aria-labelledby="modal-title"
+              role="dialog"
+              aria-modal="true"
+            >
+              <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+              <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+                <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                  <div className="relative transform overflow-hidden rounded-lg bg-darkest text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                    <div className="bg-darkest px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                      <div className="flex sm:items-start justify-center">
+                        <div className="mt-3 text-center sm:mt-0 sm:text-left">
+                          <h3
+                            className="text-base font-semibold leading-6 text-gray-300"
+                            id="modal-title"
+                          >
+                            Edit User Information
+                          </h3>
+                          <div className="mt-6 border-t border-white/10 w-full flex flex-col items-start">
+                            <dl className="divide-y divide-white/10">
+                              <form onSubmit={handleEditUser}>
+                                <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                  <dt className="text-sm font-body leading-6 text-gray-400">
+                                    Location
+                                  </dt>
+                                  <input
+                                    className="pl-2 py-1 rounded text-darkest"
+                                    placeholder={user.location}
+                                    style={{ width: 'max-content'}}
+                                    name="location"
+                                    value={formState.location}
+                                    onChange={handleChange}
+                                  />
+                                </div>
+                                <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                  <dt className="text-sm font-body leading-6 text-gray-400">
+                                    Email address
+                                  </dt>
+                                  <input
+                                    className="pl-2 py-1 rounded text-darkest"
+                                    style={{ width: 'max-content'}}
+                                    placeholder={user.email}
+                                    name="email"
+                                    type="email"
+                                    value={formState.email}
+                                    onChange={handleChange}
+                                  />
+                                </div>
+                                <p className="mb-4 text-gray-300 text-sm">
+                                  Change Your Icon
+                                </p>
+                                <div className="flex justify-center mb-3 flex-wrap sm:w-max w-64">
+                                  {icons.map((icon) => {
+                                    return (
+                                      <div key={icon.id}>
+                                        <img
+                                          src={icon.src}
+                                          alt={icon.label}
+                                          name="icon"
+                                          className={`hover:opacity-50 m-1 h-10 rounded-full ${icon.active ? 'bg-white' : ''}`}
+                                          onClick={() => profileIconChange(icon.id)}
+                                        />
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                                <div className="flex justify-center">
+                                  <button
+                                    type="button"
+                                    className="text-gray-300 my-2 md:my-0 md:mx-2 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-4 py-2 text-sm font-body"
+                                    onClick={() =>
+                                      setEditUserDisplay(!editUserDisplay)
+                                    }
+                                  >
+                                    Cancel
+                                  </button>
+                                  <button
+                                    type="submit"
+                                    className="text-gray-300  my-2 md:my-0 md:mx-2 bg-galaxy-red hover:bg-[#692217] hover:text-white rounded-md mx-2 px-4 py-2 text-sm font-body"
+                                  >
+                                    Edit Information
+                                  </button>
+                                </div>
+                              </form>
+                            </dl>
+                          </div>
                         </div>
-                      );
-                    })}
+                      </div>
+                    </div>
                   </div>
-                  <button
-                    type="submit"
-                    className="text-gray-300 bg-galaxy-red hover:bg-[#692217] hover:text-white rounded-md px-4 py-2 text-sm font-body"
-                  >
-                    Edit Information
-                  </button>
-                </form>
-              </dl>
+                </div>
+              </div>
             </div>
           ) : (
             <div className="mt-6 border-t border-white/10 w-full flex flex-col items-start">
@@ -226,7 +268,7 @@ const Profile = () => {
             </h3>
           )}
           <div className="w-full mb-2 md:w-[60%]">
-            <BlogpostList blogposts={user.blogposts} />
+            <BlogPostList blogposts={user.blogposts} />
           </div>
         </div>
       </div>
