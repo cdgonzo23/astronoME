@@ -15,8 +15,7 @@ export default {
       },
       fontFamily: {
         'body': ['Nunito'],
-        'heading': ['Exo'],
-        // 'heading': ['Jura'],
+        'heading': ['Jura'],
       }
     }
   },
