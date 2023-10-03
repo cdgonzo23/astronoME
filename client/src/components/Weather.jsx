@@ -37,7 +37,7 @@ function Weather() {
   }
   
 
-  let geoWeatherURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=" + apiKey;
+  let geoWeatherURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=1&appid=" + apiKey;
   useEffect(() => {
     const fetchData = async () => {
       const result = await fetch(geoWeatherURL);
