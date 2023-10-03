@@ -38,7 +38,7 @@ const SingleBlogpost = () => {
             <div> 
               <Link to={`/user/${blogpost.blogpostAuthor.username}`} className="hover:text-hover-blue text-lg font-heading">
                 {blogpost.blogpostAuthor.username}
-                {console.log(blogpost)}
+                {/* {console.log(blogpost)} */}
               </Link>
               <div className="text-sm text-gray-500 italic">{blogpost.blogpostAuthor.location}</div>
               <div className="text-sm text-gray-500 italic">{blogpost.createdAt}</div>
@@ -50,7 +50,7 @@ const SingleBlogpost = () => {
 
         {blogpost.imageUrl ? (
               <div className="flex justify-center">
-                <img className="w-96 mt-6 rounded-md shadow-[2px_1px_26px_2px_#000000]" style={{ padding: '1px', backgroundColor: '#212C3B' }} src={blogpost.imageUrl} alt={blogpost.imageUrl} />
+                <img className="w-96 mb-6 rounded-md shadow-[2px_1px_26px_2px_#000000]" style={{ padding: '1px', backgroundColor: '#212C3B' }} src={blogpost.imageUrl} alt={blogpost.imageUrl} />
               </div>
             ) : (
               ""

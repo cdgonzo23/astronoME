@@ -8,7 +8,7 @@ import BlogPostList from "../components/BlogPostList";
 const Blogposts = () => {
   const { loading, data } = useQuery(QUERY_BLOGPOSTS);
   const blogposts = data?.blogposts || [];
-  console.log(blogposts);
+  // console.log(blogposts);
 
   if (loading) {
     return <div>Loading...</div>;
