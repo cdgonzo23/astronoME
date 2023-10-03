@@ -37,8 +37,10 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Navbar />
-      <Outlet />
+      <div className='min-h-screen'>
+        <Navbar />
+        <Outlet />
+      </div>
       <Footer />
     </ApolloProvider>
   );
