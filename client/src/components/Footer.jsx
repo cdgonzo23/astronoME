@@ -2,7 +2,7 @@
 
 function Footer() {
   return (
-    <div className="m-4 p-8 bg-darkest text-gray-500 grid grid-cols-12 font-heading justify-items-center">
+    <div className="m-2 p-4 bg-darkest text-gray-500 grid grid-cols-12 font-heading justify-items-center">
       <div className="col-span-12 md:justify-self-start md:col-span-4 flex flex-col m-2">
         <p className="text-gray-400">Contributors</p>
         <a className="font-body hover:text-hover-blue" href='https://github.com/ChesneyJulian'>Chesney Julian</a>
