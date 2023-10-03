@@ -3,7 +3,7 @@ import { REMOVE_BLOGPOST } from "../utils/mutations";
 import { QUERY_BLOGPOSTS } from "../utils/queries";
 
 function DeleteBtn(blogpostId) {
-  console.log(blogpostId.blogpostId);
+  // console.log(blogpostId.blogpostId);
   const [removeBlogpost] = useMutation(REMOVE_BLOGPOST, {
     refetchQueries: [QUERY_BLOGPOSTS, "blogposts"],
   });
