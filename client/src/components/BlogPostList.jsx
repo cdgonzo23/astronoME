@@ -21,8 +21,8 @@ const BlogPostList = ({ blogposts }) => {
               <p>{blogpost.blogpostText}</p>
             </div>
             {blogpost.imageUrl ? (
-              <div>
-                <img className="w-96 mt-6" src={blogpost.imageUrl} alt={blogpost.imageUrl} />
+              <div className="flex justify-center">
+                <img className="w-96 mt-6 rounded-md shadow-[2px_1px_26px_2px_#000000]" style={{ padding: '1px', backgroundColor: '#212c3b' }} src={blogpost.imageUrl} alt={blogpost.imageUrl} />
               </div>
             ) : (
               ""

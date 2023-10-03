@@ -131,7 +131,7 @@ function Home() {
           <h4 className="text-2xl tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue font-heading">Daily Image from NASA</h4>
           {dailyImgUrl ? (
             <div>
-              <img style={{ width: "300px" }} src={dailyImgUrl.url} alt="Nasa Picture of the day" />
+              <img className="rounded-md shadow-[2px_1px_26px_2px_#000000]" style={{ width: "300px", padding: '1px', backgroundColor: '#212c3b' }} src={dailyImgUrl.url} alt="Nasa Picture of the day" />
             </div>
           ) : (
             <p>No NASA Image of the Day</p>
