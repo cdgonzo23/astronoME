@@ -8,6 +8,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -38,6 +39,7 @@ function App() {
     <ApolloProvider client={client}>
       <Navbar />
       <Outlet />
+      <Footer />
     </ApolloProvider>
   );
 }
