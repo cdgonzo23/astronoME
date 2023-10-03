@@ -11,6 +11,11 @@ const CloudinaryUploadWidget = ({ setImg }) => {
       {
         cloudName: cloudName,
         uploadPreset: uploadPreset,
+        cropping: true,
+        multiple: false,
+        croppingShowBackButton: true,
+        resourceType: "image",
+        showCompletedButton: true,
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
@@ -42,8 +47,8 @@ const CloudinaryUploadWidget = ({ setImg }) => {
       {data ? (
         ""
       ) : (
-        <button type="button" id="upload_widget" className="cloudinary-button px-4 py-2 bg-div-gray hover:bg-hover-blue rounded font-body">
-          Upload Your Image
+        <button type="button" id="upload_widget" className="text-gray-300 px-4 py-2 bg-div-gray hover:bg-hover-blue rounded font-body">
+          Upload Image
         </button>
       )}
     </div>
