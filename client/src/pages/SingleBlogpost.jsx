@@ -5,6 +5,7 @@ import CommentList from "../components/CommentList";
 import CommentForm from "../components/CommentForm";
 import Auth from '../utils/auth';
 import DeleteBtn from "../components/DeleteBtn";
+import iconList from "../components/iconList";
 
 import { QUERY_SINGLE_BLOGPOST } from "../utils/queries";
 
@@ -26,24 +27,36 @@ const SingleBlogpost = () => {
     <div className="flex flex-col items-center mx-12 my-12 md:my-32 text-gray-300 font-body">
       <div className="bg-darkest px-8 pt-8 pb-4 rounded flex flex-col shadow-[5px_2px_53px_5px_#6e91b8b6] w-full md:w-[60%]">
         <div className="flex flex-col w-full pb-4 border-b-[1px] border-dotted border-hover-blue">
-          <Link className="text-2xl hover:text-hover-blue font-heading" to={`/user/${blogpost.blogpostAuthor}`}>
-            {blogpost.blogpostAuthor}
-          </Link>
-          <p className="text-md italic text-gray-500">{blogpost.blogpostLocation}</p>
-          <p className="text-md italic text-gray-500">{blogpost.createdAt}</p>
+          <div className="flex flex-row justify-start items-center"> 
+            <div className="flex-shrink-0 mr-2 mb-2">
+              <img
+                className="mx-auto h-12 w-12 rounded-full"
+                src={iconList.find((icon) => icon.id === blogpost.blogpostAuthor.icon).src}
+                alt={iconList.find((icon) => icon.id === blogpost.blogpostAuthor.icon).label}
+              ></img>
+            </div>
+            <div> 
+              <Link to={`/user/${blogpost.blogpostAuthor.username}`} className="hover:text-hover-blue text-lg font-heading">
+                {blogpost.blogpostAuthor.username}
+                {console.log(blogpost)}
+              </Link>
+              <div className="text-sm text-gray-500 italic">{blogpost.blogpostAuthor.location}</div>
+              <div className="text-sm text-gray-500 italic">{blogpost.createdAt}</div>
+            </div>
+          </div>
         </div>
 
         <blockquote className="my-4 text-2xl tracking-normal leading-8">{blogpost.blogpostText}</blockquote>
 
         {blogpost.imageUrl ? (
-            <div>
-              <img className="w-96 mt-6" src={blogpost.imageUrl} alt={blogpost.imageUrl} />
-            </div>
-          ) : (
-            ""
-          )}
+              <div className="flex justify-center">
+                <img className="w-96 mt-6 rounded-md shadow-[2px_1px_26px_2px_#000000]" style={{ padding: '1px', backgroundColor: '#212C3B' }} src={blogpost.imageUrl} alt={blogpost.imageUrl} />
+              </div>
+            ) : (
+              ""
+            )}
 
-        {(viewer === blogpost.blogpostAuthor) ? (
+        {(viewer === blogpost.blogpostAuthor.username) ? (
           <div className="flex md:flex-row flex-col justify-end">
             <DeleteBtn blogpostId={blogpost._id} />
           </div>  

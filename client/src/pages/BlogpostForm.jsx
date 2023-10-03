@@ -19,11 +19,11 @@ const BlogpostForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
+      console.log(Auth.getProfile().data);
       await addBlogpost({
         variables: {
           blogpostText,
-          blogpostAuthor: Auth.getProfile().data.username,
-          blogpostLocation: Auth.getProfile().data.location,
+          blogpostAuthor: Auth.getProfile().data,
           imageUrl: imageUrl,
         },
       });

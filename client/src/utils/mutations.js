@@ -7,6 +7,8 @@ export const LOGIN_USER = gql`
       user {
         _id
         username
+        icon
+        location
       }
     }
   }
@@ -19,6 +21,8 @@ export const ADD_USER = gql`
       user {
         _id
         username
+        icon
+        location
       }
     }
   }
@@ -30,6 +34,9 @@ export const EDIT_USER = gql`
       token
       user {
         _id
+        username
+        icon
+        location
       }
     }
   }
@@ -40,8 +47,12 @@ export const ADD_BLOGPOST = gql`
     addBlogpost(blogpostText: $blogpostText, imageUrl: $imageUrl) {
       _id
       blogpostText
-      blogpostAuthor
-      blogpostLocation
+      blogpostAuthor {
+          _id
+          username
+          location
+          icon
+        }
       imageUrl
       createdAt
       comments {
@@ -57,8 +68,12 @@ export const ADD_COMMENT = gql`
     addComment(blogpostId: $blogpostId, commentText: $commentText) {
       _id
       blogpostText
-      blogpostAuthor
-      blogpostLocation
+      blogpostAuthor {
+          _id
+          username
+          location
+          icon
+        }
       createdAt
       comments {
         _id
@@ -74,8 +89,12 @@ export const REMOVE_BLOGPOST = gql`
     removeBlogpost(blogpostId: $blogpostId) {
       _id
       blogpostText
-      blogpostAuthor
-      blogpostLocation
+      blogpostAuthor {
+          _id
+          username
+          location
+          icon
+        }
       createdAt
       comments {
         _id

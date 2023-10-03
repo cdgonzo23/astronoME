@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import DeleteBtn from './DeleteBtn'
+import iconList from './iconList';
 const BlogPostList = ({ blogposts }) => {
   if (!blogposts.length) {
     return <h3 className="text-gray-300 text-center">No Posts Yet</h3>;
@@ -11,18 +12,30 @@ const BlogPostList = ({ blogposts }) => {
         blogposts.map((blogpost, index) => (
           <div key={blogpost._id} className="mb-8 px-4 sm:px-8 pt-8 pb-4 rounded shadow-[5px_2px_53px_5px_#6e91b8b6]">
             <div className="card-header tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue">
-              <Link to={`/user/${blogpost.blogpostAuthor}`} className="hover:text-hover-blue text-lg font-heading">
-                {blogpost.blogpostAuthor}
-              </Link>
-              <div className="text-sm text-gray-500 italic">{blogpost.blogpostLocation}</div>
-              <div className="text-sm text-gray-500 italic">{blogpost.createdAt}</div>
+              <div className="flex flex-row justify-start items-center">
+                <div className="flex-shrink-0 mr-2 mb-2">
+                  <img
+                    className="mx-auto h-12 w-12 rounded-full"
+                    src={iconList.find((icon) => icon.id === blogpost.blogpostAuthor.icon).src}
+                    alt={iconList.find((icon) => icon.id === blogpost.blogpostAuthor.icon).label}
+                  ></img>
+                </div>
+                <div>
+                  <Link to={`/user/${blogpost.blogpostAuthor.username}`} className="hover:text-hover-blue text-lg font-heading">
+                    {blogpost.blogpostAuthor.username}
+                    {console.log(blogpost)}
+                  </Link>
+                  <div className="text-sm text-gray-500 italic">{blogpost.blogpostAuthor.location}</div>
+                  <div className="text-sm text-gray-500 italic">{blogpost.createdAt}</div>
+                </div>
+              </div>
             </div>
             <div className="leading-7 text-gray-300 text-2xl">
               <p>{blogpost.blogpostText}</p>
             </div>
             {blogpost.imageUrl ? (
               <div className="flex justify-center">
-                <img className="w-96 mt-6 rounded-md shadow-[2px_1px_26px_2px_#000000]" style={{ padding: '1px', backgroundColor: '#212c3b' }} src={blogpost.imageUrl} alt={blogpost.imageUrl} />
+                <img className="w-96 mt-6 rounded-md shadow-[2px_1px_26px_2px_#000000]" style={{ padding: '1px', backgroundColor: '#212C3B' }} src={blogpost.imageUrl} alt={blogpost.imageUrl} />
               </div>
             ) : (
               ""
