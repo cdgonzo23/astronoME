@@ -6,7 +6,7 @@ import { useState } from "react";
 import Auth from "../utils/auth";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import { EDIT_USER } from "../utils/mutations";
-import BlogpostList from "../components/BlogpostList";
+import BlogPostList from "../components/BlogPostList";
 import iconList from "../components/iconList";
 // Components
 const Profile = () => {
@@ -251,7 +251,7 @@ const Profile = () => {
             </h3>
           )}
           <div className="w-full mb-2 md:w-[60%]">
-            <BlogpostList blogposts={user.blogposts} />
+            <BlogPostList blogposts={user.blogposts} />
           </div>
         </div>
       </div>
