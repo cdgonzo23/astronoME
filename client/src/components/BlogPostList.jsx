@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import DeleteBtn from './DeleteBtn'
-const BlogpostList = ({ blogposts }) => {
+const BlogPostList = ({ blogposts }) => {
   if (!blogposts.length) {
     return <h3 className="text-gray-300 text-center">No Posts Yet</h3>;
   }
@@ -59,7 +59,7 @@ const BlogpostList = ({ blogposts }) => {
     </div>
   );
 };
-export default BlogpostList;
-BlogpostList.propTypes = {
+export default BlogPostList;
+BlogPostList.propTypes = {
   blogposts: PropTypes.array,
 };

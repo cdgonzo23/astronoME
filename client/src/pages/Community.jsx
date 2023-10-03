@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // Utilities
 import Auth from "../utils/auth";
 import { QUERY_BLOGPOSTS } from "../utils/queries";
-import BlogpostList from "../components/BlogpostList";
+import BlogPostList from "../components/BlogPostList";
 
 const Blogposts = () => {
   const { loading, data } = useQuery(QUERY_BLOGPOSTS);
@@ -23,7 +23,7 @@ const Blogposts = () => {
             </Link>
           </div>
           <div className="w-full mb-2 md:w-[60%]">
-            <BlogpostList blogposts={blogposts} />
+            <BlogPostList blogposts={blogposts} />
           </div>
         </>
       ) : (
