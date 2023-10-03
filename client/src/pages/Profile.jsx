@@ -9,29 +9,43 @@ import { EDIT_USER } from "../utils/mutations";
 import BlogPostList from "../components/BlogPostList";
 import iconList from "../components/iconList";
 // Components
+
 const Profile = () => {
   const { username } = useParams();
   const { loading, data, error } = useQuery(username ? QUERY_USER : QUERY_ME, {
     variables: { username: username },
   });
+
   const user = data?.user || data?.me || {};
   if (error) console.log(error);
-  // console.log(username);
-  console.log('ICON', iconList.find((icon) => icon.id === user.icon));
+
+  // console.log('ICON', iconList.find((icon) => icon.id === user.icon));
+
   const [editUserDisplay, setEditUserDisplay] = useState(false);
-  // const [iconDisplay, setIconDisplay] = useState(false);
-  const [formState, setFormState] = useState({ email: "", location: "" });
+  const [icons, setIcons] = useState(iconList);
+
+  const [formState, setFormState] = useState({ email: "", location: "", icon: null });
+
   const [editUser] = useMutation(EDIT_USER, {
     refetchQueries: [QUERY_ME, "me"],
   });
+
+  const profileIconChange = (id) => {
+    setIcons((icons) => (icons.map((icon) => icon.id === id ? ({ ...icon, active: true }) : ({ ...icon, active: false }))))
+    setFormState((formState) => ({
+      ...formState,
+      icon: id,
+    }));
+  }
+
   const handleChange = async (event) => {
-    const { name, value, src } = event.target;
+    const { name, value } = event.target;
     setFormState({
       ...formState,
       [name]: value,
-      icon: src,
     });
   };
+
   const handleEditUser = async (event) => {
     event.preventDefault();
     try {
@@ -41,7 +55,7 @@ const Profile = () => {
       if (formState.location === "") {
         formState.location = user.location;
       }
-      if (formState.icon === "") {
+      if (formState.icon === null) {
         formState.icon = user.icon;
       }
       const { data } = await editUser({
@@ -53,14 +67,17 @@ const Profile = () => {
     }
     setEditUserDisplay(false);
   };
+
   // redirect to personal profile page if username is yours
   if (Auth.loggedIn() && Auth.getProfile().data.username === username) {
     return <Navigate to="/me" />;
   }
+
   // console.log("user: ", user);
   if (loading) {
     return <h4>Loading...</h4>;
   }
+
   if (!user?.username) {
     return (
       <h4>
@@ -69,6 +86,7 @@ const Profile = () => {
       </h4>
     );
   }
+
   return (
     <>
       <div className="m-7">
@@ -79,7 +97,7 @@ const Profile = () => {
                 <img
                   className="mx-auto h-20 w-20 rounded-full"
                   src={iconList.find((icon) => icon.id === user.icon).src}
-                  alt=""
+                  alt={iconList.find((icon) => icon.id === user.icon).label}
                 ></img>
               </div>
               <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
@@ -180,15 +198,15 @@ const Profile = () => {
                                     marginBottom: "1rem",
                                   }}
                                 >
-                                  {iconList.map((icon) => {
+                                  {icons.map((icon) => {
                                     return (
                                       <div key={icon.id} className="mx-1 ">
                                         <img
                                           src={icon.src}
                                           alt={icon.label}
                                           name="icon"
-                                          className="hover:opacity-50 rounded-full m-1"
-                                          onClick={handleChange}
+                                          className={`hover:opacity-50 m-1 rounded-full ${icon.active ? 'bg-white' : ''}`}
+                                          onClick={() => profileIconChange(icon.id)}
                                         />
                                       </div>
                                     );

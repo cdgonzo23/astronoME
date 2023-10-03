@@ -14,7 +14,8 @@ const Signup = () => {
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
   const [icons, setIcons] = useState(iconList);
-  console.log('FORM STATE', formState);
+  // console.log('FORM STATE', formState);
+  
   const profileIconSelect = (id) => {
     setIcons((icons) => (icons.map((icon) => icon.id === id ? ({ ...icon, active: true }) : ({ ...icon, active: false }))))
     setFormState((formState) => ({
@@ -22,6 +23,7 @@ const Signup = () => {
       icon: id,
     }));
   }
+  
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState((formState) => ({
