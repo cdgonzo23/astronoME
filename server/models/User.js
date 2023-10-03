@@ -24,7 +24,7 @@ const userSchema = new Schema({
     required: true,
   },
   icon: {
-    type: String,
+    type: Number,
     required: true,
   },
   blogposts: [
