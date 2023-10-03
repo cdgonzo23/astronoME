@@ -19,7 +19,7 @@ const BlogpostForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      console.log(Auth.getProfile().data);
+      // console.log(Auth.getProfile().data);
       await addBlogpost({
         variables: {
           blogpostText,
@@ -72,10 +72,10 @@ const BlogpostForm = () => {
             </button>
           </div>
           {imageUrl !== "" ? (
-            <>
+            <div className="flex justify-center">
               {/* <p className="text-xl text-green-400">Image Uploaded</p> */}
-              <img className="w-96" src={imageUrl} alt={imageUrl} />
-            </>
+              <img className="w-96 mt-5 rounded-md shadow-[2px_1px_26px_2px_#000000]" style={{ padding: '1px', backgroundColor: '#212c3b' }} src={imageUrl} alt={imageUrl} />
+            </div>
           ) : (
             ""
           )}
