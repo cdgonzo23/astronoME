@@ -153,7 +153,7 @@ const Profile = () => {
                 <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
                   <div className="relative transform overflow-hidden rounded-lg bg-darkest text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                     <div className="bg-darkest px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                      <div className="sm:flex sm:items-start">
+                      <div className="flex sm:items-start justify-center">
                         <div className="mt-3 text-center sm:mt-0 sm:text-left">
                           <h3
                             className="text-base font-semibold leading-6 text-gray-300"
@@ -170,9 +170,10 @@ const Profile = () => {
                                   </dt>
                                   <input
                                     className="pl-2 py-1 rounded text-darkest"
+                                    placeholder={user.location}
                                     style={{ width: 'max-content'}}
                                     name="location"
-                                    value={formState.location || user.location}
+                                    value={formState.location}
                                     onChange={handleChange}
                                   />
                                 </div>
@@ -183,50 +184,48 @@ const Profile = () => {
                                   <input
                                     className="pl-2 py-1 rounded text-darkest"
                                     style={{ width: 'max-content'}}
+                                    placeholder={user.email}
                                     name="email"
                                     type="email"
-                                    value={formState.email || user.email}
+                                    value={formState.email}
                                     onChange={handleChange}
                                   />
                                 </div>
                                 <p className="mb-4 text-gray-300 text-sm">
                                   Change Your Icon
                                 </p>
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    marginBottom: "1rem",
-                                  }}
-                                >
+                                <div className="flex justify-center mb-3 flex-wrap sm:w-max w-64">
                                   {icons.map((icon) => {
                                     return (
-                                      <div key={icon.id} className="mx-1 ">
+                                      <div key={icon.id}>
                                         <img
                                           src={icon.src}
                                           alt={icon.label}
                                           name="icon"
-                                          className={`hover:opacity-50 m-1 rounded-full ${icon.active ? 'bg-white' : ''}`}
+                                          className={`hover:opacity-50 m-1 h-10 rounded-full ${icon.active ? 'bg-white' : ''}`}
                                           onClick={() => profileIconChange(icon.id)}
                                         />
                                       </div>
                                     );
                                   })}
                                 </div>
-                                <button
-                                  type="button"
-                                  className="text-gray-300 my-2 md:my-0 md:mx-2 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-4 py-2 text-sm font-body"
-                                  onClick={() =>
-                                    setEditUserDisplay(!editUserDisplay)
-                                  }
-                                >
-                                  Cancel
-                                </button>
-                                <button
-                                  type="submit"
-                                  className="text-gray-300 bg-galaxy-red hover:bg-[#692217] hover:text-white rounded-md px-4 py-2 text-sm font-body"
-                                >
-                                  Edit Information
-                                </button>
+                                <div className="flex justify-center">
+                                  <button
+                                    type="button"
+                                    className="text-gray-300 my-2 md:my-0 md:mx-2 bg-div-gray hover:bg-hover-blue hover:text-white rounded-md px-4 py-2 text-sm font-body"
+                                    onClick={() =>
+                                      setEditUserDisplay(!editUserDisplay)
+                                    }
+                                  >
+                                    Cancel
+                                  </button>
+                                  <button
+                                    type="submit"
+                                    className="text-gray-300  my-2 md:my-0 md:mx-2 bg-galaxy-red hover:bg-[#692217] hover:text-white rounded-md mx-2 px-4 py-2 text-sm font-body"
+                                  >
+                                    Edit Information
+                                  </button>
+                                </div>
                               </form>
                             </dl>
                           </div>
