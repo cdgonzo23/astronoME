@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import DeleteBtn from '../components/DeleteBtn'
+import DeleteBtn from './DeleteBtn'
 const BlogpostList = ({ blogposts }) => {
   if (!blogposts.length) {
     return <h3 className="text-gray-300 text-center">No Posts Yet</h3>;
