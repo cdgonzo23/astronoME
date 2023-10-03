@@ -3,6 +3,8 @@ import { useQuery } from "@apollo/client";
 
 import CommentList from "../components/CommentList";
 import CommentForm from "../components/CommentForm";
+import Auth from '../utils/auth';
+import DeleteBtn from "../components/DeleteBtn";
 
 import { QUERY_SINGLE_BLOGPOST } from "../utils/queries";
 
@@ -13,7 +15,8 @@ const SingleBlogpost = () => {
     // pass URL parameter
     variables: { blogpostId: blogpostId },
   });
-
+  const userData = Auth.getProfile();
+  const viewer = userData.data.username;
   const blogpost = data?.blogpost || {};
 
   if (loading) {
@@ -39,6 +42,12 @@ const SingleBlogpost = () => {
           ) : (
             ""
           )}
+
+        {(viewer === blogpost.blogpostAuthor) ? (
+          <div className="flex md:flex-row flex-col justify-end">
+            <DeleteBtn blogpostId={blogpost._id} />
+          </div>  
+        ) : (<div />)}
       </div>
 
       <div className="my-5 w-full md:w-[60%] font-body">
