@@ -11,8 +11,12 @@ export const QUERY_USER = gql`
       blogposts {
         _id
         blogpostText
-        blogpostAuthor
-        blogpostLocation
+        blogpostAuthor {
+          _id
+          username
+          location
+          icon
+        }
         imageUrl
         createdAt
         comments {
@@ -34,8 +38,12 @@ export const QUERY_ME = gql`
       blogposts {
         _id
         blogpostText
-        blogpostAuthor
-        blogpostLocation
+        blogpostAuthor {
+          _id
+          username
+          location
+          icon
+        }
         imageUrl
         createdAt
         comments {
@@ -51,8 +59,12 @@ export const QUERY_BLOGPOSTS = gql`
     blogposts {
       _id
       blogpostText
-      blogpostAuthor
-      blogpostLocation
+      blogpostAuthor {
+          _id
+          username
+          location
+          icon
+        }
       imageUrl
       createdAt
       comments {
@@ -67,8 +79,12 @@ export const QUERY_SINGLE_BLOGPOST = gql`
     blogpost(blogpostId: $blogpostId) {
       _id
       blogpostText
-      blogpostAuthor
-      blogpostLocation
+      blogpostAuthor {
+          _id
+          username
+          location
+          icon
+        }
       imageUrl
       createdAt
       comments {

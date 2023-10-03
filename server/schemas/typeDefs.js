@@ -14,8 +14,7 @@ const typeDefs = gql`
   type Blogpost {
     _id: ID
     blogpostText: String
-    blogpostAuthor: String
-    blogpostLocation: String
+    blogpostAuthor: User
     imageUrl: String
     createdAt: String
     comments: [Comment]!

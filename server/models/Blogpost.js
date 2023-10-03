@@ -10,15 +10,20 @@ const blogpostSchema = new Schema({
     trim: true,
   },
   blogpostAuthor: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: 'User',
     required: true,
-    trim: true,
+    // trim: true,
   },
-  blogpostLocation: {
-    type: String,
-    required: true,
-    trim: true,
-  },
+  // authorIcon: {
+  //   type: Number,
+  //   required: true
+  // },
+  // blogpostLocation: {
+  //   type: String,
+  //   required: true,
+  //   trim: true,
+  // },
   imageUrl: {
     type: String,
     required: false,
