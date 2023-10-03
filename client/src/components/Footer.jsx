@@ -2,8 +2,8 @@
 
 function Footer() {
   return (
-    <div className="m-2 p-4 bg-darkest text-gray-500 grid grid-cols-12 font-heading justify-items-center">
-      <div className="col-span-12 md:justify-self-start md:col-span-4 flex flex-col m-2">
+    <div className="m-8 p-4 bg-darkest text-gray-500 grid grid-cols-12 font-heading justify-items-center">
+      <div className="col-span-6 md:justify-self-start md:col-span-4 flex flex-col m-2">
         <p className="text-gray-400">Contributors</p>
         <a className="font-body hover:text-hover-blue" href='https://github.com/ChesneyJulian'>Chesney Julian</a>
         <a className="font-body hover:text-hover-blue" href='https://github.com/cdgonzo23'>Christian Gonzales</a>
@@ -11,7 +11,7 @@ function Footer() {
         <a className="font-body hover:text-hover-blue" href='https://github.com/t-willis'>Taylor Willis</a>
         <a className="font-body hover:text-hover-blue" href='https://github.com/Zgibbs58'>Zach Gibbs</a>
       </div>
-      <div className="col-span-12 md:col-span-4 flex flex-col m-2">
+      <div className="col-span-6 md:col-span-4 flex flex-col m-2">
         <p className="text-gray-400">Resources</p>
         <a className="font-body hover:text-hover-blue" href='https://api.nasa.gov/'>NASA</a>
         <a className="font-body hover:text-hover-blue" href='https://openweathermap.org/api'>Open Weather Map</a>
