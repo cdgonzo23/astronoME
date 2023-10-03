@@ -73,6 +73,7 @@ function Weather() {
   return (
     <>
       <h4 className="text-2xl tracking-wide pb-4 mb-4 border-b-[1px] border-dotted border-hover-blue font-heading">Current Conditions</h4>
+      <h5 className="text-xl tracking-wide mb-2 font-heading">{cityName}</h5>
       <div className='flex flex-col sm:flex-row justify-between'>
         <div className="list-none leading-7 font-body">
           <li><span className="text-[#6e91b8]">Temp:</span> {temperature}</li>

@@ -1,27 +1,8 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
-import { REMOVE_BLOGPOST } from "../utils/mutations";
-import { QUERY_BLOGPOSTS } from "../utils/queries";
+import DeleteBtn from '../components/DeleteBtn'
 
 const BlogpostList = ({ blogposts }) => {
-  const [removeBlogpost] = useMutation(REMOVE_BLOGPOST, {
-    refetchQueries: [QUERY_BLOGPOSTS, "blogposts"],
-  });
-  // console.log("blogposts", blogposts);
-  async function handlePostDelete(blogpostId) {
-    // e.preventDefault();
-    try {
-      await removeBlogpost({
-        variables: {
-          blogpostId: blogpostId,
-        },
-      });
-      document.location.reload();
-    } catch (err) {
-      console.error(err);
-    }
-  }
   if (!blogposts.length) {
     return <h3 className="text-gray-300 text-center">No Posts Yet</h3>;
   }
@@ -63,12 +44,7 @@ const BlogpostList = ({ blogposts }) => {
                   >
                     View Post
                   </Link>
-                  <button
-                    onClick={() => handlePostDelete(blogpost._id)}
-                    className="text-gray-300 bg-galaxy-red hover:bg-[#692217] hover:text-white rounded-md px-4 py-2 text-sm font-body"
-                  >
-                    Delete
-                  </button>
+                  <DeleteBtn blogpostId={blogpost._id} />
                 </div>
               ) : (
                 <Link
