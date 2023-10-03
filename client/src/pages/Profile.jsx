@@ -6,7 +6,7 @@ import { useState } from "react";
 import Auth from "../utils/auth";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import { EDIT_USER } from "../utils/mutations";
-import BlogpostList from "../components/BlogpostList";
+import BlogpostList from "../components/_BlogPostList";
 import iconList from "../components/iconList";
 // Components
 
