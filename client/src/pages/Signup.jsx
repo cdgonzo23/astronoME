@@ -85,19 +85,13 @@ const Signup = () => {
           onChange={handleChange}
         />
         <p className="mb-4">Select An Icon For Your Profile</p>
-        <div style={{ display: "flex", maxWidth: "75%", marginBottom: "2rem" }}>
+        <div className="flex justify-center mb-3 flex-wrap sm:w-max w-72">
           {icons.map((icon) => {
             return (
               <div key={icon.id} className="mx-1">
-                <img
-                  src={icon.src}
-                  alt={icon.label}
-                  name="icon"
-                  className={`hover:opacity-50 rounded-full ${icon.active ? "bg-white" : ""}`}
-                  onClick={() => profileIconSelect(icon.id)}
-                />
+                <img src={icon.src} alt={icon.label} name="icon" className={`hover:opacity-50 m-1 h-10 rounded-full ${icon.active ? 'bg-white' : ''}`} onClick={() => profileIconSelect(icon.id)}/>
               </div>
-            );
+            )
           })}
         </div>
         <button className="px-4 py-2 bg-div-gray hover:bg-hover-blue rounded" type="submit">
