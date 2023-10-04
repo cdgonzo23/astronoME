@@ -26,15 +26,30 @@ If you want to deploy this app locally you'll need to do the following:
 
 ## Usage
 
-This app allows users to create an account and view their local weather to determine if it's a good night for stargazing, as well as create forum posts, upload images, and comment on other users posts.
 
----
+This app allows users to create an account and view their local weather to determine if it's a good night for stargazing, as well as create forum posts, upload images, and comment on other users posts.
 
 A user can create a new account by clicking the astronaut button at the top right of the viewport. If they already have an account they can instead click 'Login' to do so.
 
+![Login/Signup Demonstration](./assets/images/READMELoginSignup.gif)
+
+---
+
 Once logged in a user can view current weather conditions, incoming near-earth objects, and a daily image from NASA by viewing the homepage.
 
-Users can also view and create their own posts in the community page if logged in, as well as comment on other users posts.
+![Homepage Demonstration](./assets/images/READMEHomepage.gif)
+
+---
+
+Users can view other users posts in the community page if logged in, as well as comment on those posts.
+
+![Community Forum Demonstration](./assets/images/READMECommunity.gif)
+
+---
+
+Users can add a new post by clicking the 'Add a Post!' button at the top of the Community page. They can then enter a body for the post and optionally upload an image using the 'Upload Image' button, then selecting the desired image using the Cloudinary Widget UI.
+
+![Create a New Post Demonstration](./assets/images/READMENewPost.gif)
 
 ## Technologies Used
 
@@ -81,11 +96,13 @@ Users can also view and create their own posts in the community page if logged i
 
 ## APIs Used
 
-- [OpenWeather Geocoding API](https://openweathermap.org/api/geocoding-api) - Used to retrieve latitude and longitude based on user input.
+- [OpenWeather Geocoding](https://openweathermap.org/api/geocoding-api) - Used to retrieve latitude and longitude based on user input.
+
+- [OpenWeatherMap](https://openweathermap.org/current) - Used to retrieve current weather conditions based on latitude and longitude input.
 
 - [Astronomy Picture of the Day](https://api.nasa.gov/) - Used to provide a high quality space-related image that changes every day.
 
-- []
+- [Asteroids - NeoWs](https://api.nasa.gov/) - Used to retrieve an asteroid that is currently pathing close to Earth.
 
 ## Credits
 
