@@ -2,16 +2,19 @@
 
 ## Description
 
+AstronoMe is your gateway to the wonders of the universe. Whether you're a seasoned stargazer or just starting your cosmic journey, our website is designed to inform, educate, and inspire your curiosity about the cosmos! Sign in to join the stargazing community and share your adventure onto our community! 
+
 ## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
+- [APIs Used](#apis-used)
 - [Credits](#credits)
 
 ## Installation
 
-This app is deployed on Heroku: [Click Here](not yet implemented, put link here)
+This app is deployed on Heroku: [Click Here](https://astronome-10022023-9058067b996b.herokuapp.com/)
 
 If you want to deploy this app locally you'll need to do the following:
 
@@ -22,6 +25,16 @@ If you want to deploy this app locally you'll need to do the following:
 - Navigate to `http://localhost:3001/` in your browser to get started
 
 ## Usage
+
+This app allows users to create an account and view their local weather to determine if it's a good night for stargazing, as well as create forum posts, upload images, and comment on other users posts.
+
+---
+
+A user can create a new account by clicking the astronaut button at the top right of the viewport. If they already have an account they can instead click 'Login' to do so.
+
+Once logged in a user can view current weather conditions, incoming near-earth objects, and a daily image from NASA by viewing the homepage.
+
+Users can also view and create their own posts in the community page if logged in, as well as comment on other users posts.
 
 ## Technologies Used
 
@@ -66,8 +79,13 @@ If you want to deploy this app locally you'll need to do the following:
 [vite](https://www.npmjs.com/package/vite) - Local development server for React templates.
 
 
+## APIs Used
 
+- [OpenWeather Geocoding API](https://openweathermap.org/api/geocoding-api) - Used to retrieve latitude and longitude based on user input.
 
+- [Astronomy Picture of the Day](https://api.nasa.gov/) - Used to provide a high quality space-related image that changes every day.
+
+- []
 
 ## Credits
 
@@ -80,7 +98,3 @@ Christian Gonzales - [cdgonzo23](https://github.com/cdgonzo23)
 Chesney Julian - [ChesneyJulian](https://github.com/ChesneyJulian)
 
 Taylor Willis - [t-willis](https://github.com/t-willis)
-
-
-moon phase thinger
-https://jasonsturges.medium.com/moons-lunar-phase-in-javascript-a5219acbfe6e#:~:text=API%20is%20as%20follows%3A,lunar%20age%20(ex%3A%2016.54412413414952)
