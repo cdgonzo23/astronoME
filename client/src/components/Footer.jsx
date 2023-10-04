@@ -17,7 +17,7 @@ function Footer() {
         <a className="font-body hover:text-hover-blue" href='https://openweathermap.org/api'>Open Weather Map</a>
         <a className="font-body hover:text-hover-blue" href='https://cloudinary.com/ip/gr-sea-gg-brand-home-base?utm_source=google&utm_medium=search&utm_campaign=goog_selfserve_brand_wk22_replicate_core_branded_keyword&utm_term=1329&campaignid=18164753405&adgroupid=144188713167&keyword=cloudinary&device=c&matchtype=e&adposition=&gad=1&gclid=Cj0KCQjw1OmoBhDXARIsAAAYGSGL3dnpXyhJ9cZADRrUAwD6ejLmi6pCWMufn3d4PSOLvO9WsD7LsZcaAhCpEALw_wcB'>Cloudinary</a>
       </div>
-      <p className="col-span-12 md:col-span-4 m-4 md:justify-self-end text-gray-400">© 2023 AstronoMe</p>
+      <p className="col-span-12 md:col-span-4 m-4 md:justify-self-end text-gray-400">© 2023 AstronoME</p>
       
       
       
